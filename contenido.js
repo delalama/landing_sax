@@ -45,7 +45,6 @@ window.contenidoLanding = {
       campoMensaje: "Mensaje",
       placeholderMensaje: "Tipo de evento, ciudad, horario aproximado...",
       enviarSolicitud: "Enviar solicitud",
-      derechos: "Todos los derechos reservados.",
       fechaPorConfirmar: "Por confirmar",
       asuntoBooking: "Solicitud de booking"
     },
@@ -90,6 +89,47 @@ window.contenidoLanding = {
       derechos: "All rights reserved.",
       fechaPorConfirmar: "To be confirmed",
       asuntoBooking: "Booking request"
+    },
+
+    de: {
+      etiqueta: "Deutsch",
+      metaDescripcion: "Persoenliche Landingpage fuer einen Saxophonisten: Musik, Kanaele und Booking.",
+      navSobreMi: "Ueber mich",
+      navBooking: "Booking",
+      etiquetaHero: "Saxophonist · Live · Events",
+      tituloHero: "Jazz, Pop und Tanzmusik",
+      textoHero:
+        "Live-Musik mit warmem, elegantem Sound fuer private Events, Feiern und besondere Momente.",
+      youtubeKicker: "Ansehen auf",
+      instagramKicker: "Folgen auf",
+      featureEtiqueta: "Live",
+      featureTitulo: "Ein flexibles Format fuer stilvolle Events.",
+      featureTexto:
+        "Vom Sunset-Cocktail bis zur tanzbaren Feier bringt das Saxophon Praesenz, Naehe und elegante Energie in jedes Ambiente.",
+      featureCta: "Verfuegbarkeit anfragen",
+      destacados: [
+        "Flexibles Repertoire fuer Dinner, Cocktails, Zeremonien und Brand-Events.",
+        "Improvisation auf vorgegebenem Repertoire.",
+        "Sorgfaeltiger Sound, elegante Praesenz und Feingefuehl fuer jede Stimmung."
+      ],
+      sobreMiEtiqueta: "Ueber mich",
+      sobreMiTitulo: "Ein intimes, raffiniertes Musikkonzept mit Charakter.",
+      sobreMiParrafos: [
+        "Ich bin Saxophonist und gestalte Auftritte, die das Ambiente anheben ohne es zu dominieren: erkennbare Melodien, gezielte Improvisation und eine stilvolle Buehnenpraesenz.",
+        "Mein Repertoire passt sich dem Ton jedes Events an, von ruhigen Stuecken zum Empfang bis zu expressiveren Momenten fuer Feier und Tanzflaeche."
+      ],
+      bookingEtiqueta: "Booking",
+      bookingTitulo: "Nenne mir Datum, Ort und Art des Events.",
+      bookingTexto:
+        "Das Formular oeffnet dein E-Mail-Programm mit vorbereiteter Nachricht. Trage hier deine Daten fuer Event-Anfragen ein.",
+      campoNombre: "Name",
+      campoEmail: "E-Mail",
+      campoFecha: "Event-Datum",
+      campoMensaje: "Nachricht",
+      placeholderMensaje: "Art des Events, Stadt, ungefaehre Uhrzeit...",
+      enviarSolicitud: "Anfrage senden",
+      fechaPorConfirmar: "Noch offen",
+      asuntoBooking: "Booking-Anfrage"
     },
 
     fr: {

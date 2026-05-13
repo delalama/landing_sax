@@ -1,34 +1,36 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Landing personal de saxofonista: música, redes y booking.">
+    <meta name="description" content="Landing personal de saxofonista: mÃºsica, redes y booking.">
     <title>Tu Nombre | Saxofonista</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <header class="site-header" aria-label="Cabecera">
       <a class="brand" href="#inicio" aria-label="Ir al inicio">
-        <span class="brand-mark" data-content="inicial">S</span>
-        <span data-content="nombre">Tu Nombre</span>
+        <img class="brand-wordmark" src="assets/footer%20y%20logo.png" alt="Jesús de la Lama">
       </a>
       <div class="header-actions">
-        <nav class="nav-links" aria-label="Navegación principal">
-          <a href="#sobre-mi" data-content="navSobreMi">Sobre mí</a>
+        <nav class="nav-links" aria-label="NavegaciÃ³n principal">
+          <a href="#sobre-mi" data-content="navSobreMi">Sobre mÃ­</a>
           <a href="#booking" data-content="navBooking">Booking</a>
         </nav>
         <div class="language-switcher" aria-label="Seleccionar idioma">
-          <button class="language-button" type="button" data-lang="es" aria-label="Español">
-            <span class="flag flag-es" aria-hidden="true"></span>
-          </button>
           <button class="language-button" type="button" data-lang="en" aria-label="English">
             <span class="flag flag-en" aria-hidden="true"></span>
           </button>
-          <button class="language-button" type="button" data-lang="fr" aria-label="Français">
+          <button class="language-button" type="button" data-lang="es" aria-label="EspaÃ±ol">
+            <span class="flag flag-es" aria-hidden="true"></span>
+          </button>
+          <button class="language-button" type="button" data-lang="de" aria-label="Deutsch">
+            <span class="flag flag-de" aria-hidden="true"></span>
+          </button>
+          <button class="language-button" type="button" data-lang="fr" aria-label="FranÃ§ais">
             <span class="flag flag-fr" aria-hidden="true"></span>
           </button>
         </div>
@@ -36,15 +38,15 @@
     </header>
 
     <main id="inicio">
-      <section class="hero" aria-label="Presentación">
-        <img class="hero-image" src="assets/hero-personal.png" alt="Saxofonista interpretando con saxofón">
+      <section class="hero" aria-label="PresentaciÃ³n">
+        <img class="hero-image" src="assets/hero-personal.png" alt="Saxofonista interpretando con saxofÃ³n">
         <div class="hero-shade" aria-hidden="true"></div>
-        <div class="hero-content">
-          <p class="eyebrow" data-content="etiquetaHero">Saxofonista · Directos · Eventos</p>
+        <div class="hero-content is-visible" data-reveal>
+          <p class="eyebrow" data-content="etiquetaHero">Saxofonista Â· Directos Â· Eventos</p>
           <h1 data-content="tituloHero">Elegancia sonora para momentos memorables.</h1>
           <p class="hero-copy" data-content="textoHero">
-            Música en directo con un sonido cálido, sofisticado y cercano para eventos privados,
-            celebraciones, sesiones y colaboraciones escénicas.
+            MÃºsica en directo con un sonido cÃ¡lido, sofisticado y cercano para eventos privados,
+            celebraciones, sesiones y colaboraciones escÃ©nicas.
           </p>
           <div class="main-actions" aria-label="Canales principales">
             <a class="social-button youtube" data-link="youtubeUrl" href="https://www.youtube.com/" target="_blank" rel="noreferrer">
@@ -59,7 +61,7 @@
         </div>
       </section>
 
-      <section class="feature-section" aria-label="Actuaciones en directo">
+      <section class="feature-section" aria-label="Actuaciones en directo" data-reveal>
         <div class="feature-media">
           <img src="assets/sax_beach.png" alt="Saxofonista tocando junto al mar">
         </div>
@@ -67,21 +69,21 @@
           <p class="eyebrow" data-content="featureEtiqueta">Directo</p>
           <h2 data-content="featureTitulo">Un formato flexible para eventos con estilo.</h2>
           <p data-content="featureTexto">
-            Desde un cóctel al atardecer hasta una fiesta con repertorio bailable, el saxo aporta
-            presencia, cercanía y una energía elegante sin romper el ambiente.
+            Desde un cÃ³ctel al atardecer hasta una fiesta con repertorio bailable, el saxo aporta
+            presencia, cercanÃ­a y una energÃ­a elegante sin romper el ambiente.
           </p>
           <a class="text-link" href="#booking" data-content="featureCta">Consultar disponibilidad</a>
         </div>
       </section>
 
-      <section class="intro-band" aria-label="Resumen">
+      <section class="intro-band" aria-label="Resumen" data-reveal>
         <div class="intro-item">
           <span>01</span>
-          <p data-list="destacados" data-index="0">Repertorio adaptable a cenas, cócteles, ceremonias y experiencias de marca.</p>
+          <p data-list="destacados" data-index="0">Repertorio adaptable a cenas, cÃ³cteles, ceremonias y experiencias de marca.</p>
         </div>
         <div class="intro-item">
           <span>02</span>
-          <p data-list="destacados" data-index="1">Sonido cuidado, presencia elegante y sensibilidad para acompañar cada ambiente.</p>
+          <p data-list="destacados" data-index="1">Sonido cuidado, presencia elegante y sensibilidad para acompaÃ±ar cada ambiente.</p>
         </div>
         <div class="intro-item">
           <span>03</span>
@@ -89,30 +91,30 @@
         </div>
       </section>
 
-      <section id="sobre-mi" class="section about-section">
+      <section id="sobre-mi" class="section about-section" data-reveal>
         <div class="section-heading">
-          <p class="eyebrow" data-content="sobreMiEtiqueta">Sobre mí</p>
-          <h2 data-content="sobreMiTitulo">Una propuesta musical íntima, refinada y con carácter.</h2>
+          <p class="eyebrow" data-content="sobreMiEtiqueta">Sobre mÃ­</p>
+          <h2 data-content="sobreMiTitulo">Una propuesta musical Ã­ntima, refinada y con carÃ¡cter.</h2>
         </div>
         <div class="about-copy">
           <p data-list="sobreMiParrafos" data-index="0">
-            Soy saxofonista y trabajo una interpretación pensada para elevar el ambiente sin invadirlo:
-            melodías reconocibles, improvisación medida y una puesta en escena sobria.
+            Soy saxofonista y trabajo una interpretaciÃ³n pensada para elevar el ambiente sin invadirlo:
+            melodÃ­as reconocibles, improvisaciÃ³n medida y una puesta en escena sobria.
           </p>
           <p data-list="sobreMiParrafos" data-index="1">
             Mi repertorio se adapta al tono de cada evento, desde piezas suaves para recibir invitados
-            hasta momentos más expresivos para abrir la pista o acompañar una celebración.
+            hasta momentos mÃ¡s expresivos para abrir la pista o acompaÃ±ar una celebraciÃ³n.
           </p>
         </div>
       </section>
 
-      <section id="booking" class="section booking-section">
+      <section id="booking" class="section booking-section" data-reveal>
         <div class="booking-panel">
           <div>
             <p class="eyebrow" data-content="bookingEtiqueta">Booking</p>
-            <h2 data-content="bookingTitulo">Cuéntame la fecha, el lugar y el tipo de evento.</h2>
+            <h2 data-content="bookingTitulo">CuÃ©ntame la fecha, el lugar y el tipo de evento.</h2>
             <p data-content="bookingTexto">
-              El formulario abrirá tu correo con el mensaje preparado. Cambia el email de destino
+              El formulario abrirÃ¡ tu correo con el mensaje preparado. Cambia el email de destino
               en el archivo para dejarlo conectado a tu bandeja.
             </p>
           </div>
@@ -140,12 +142,16 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <p>© <span id="year"></span> <span data-content="nombre">Tu Nombre</span>. <span data-content="derechos">Todos los derechos reservados.</span></p>
-      <a data-email-link href="mailto:tuemail@example.com">tuemail@example.com</a>
+    <footer class="site-footer" aria-label="Decoración final">
+      <div class="footer-ornament" aria-hidden="true">
+        <span class="footer-line"></span>
+        <img class="footer-logo" src="assets/footer%20y%20logo.png" alt="">
+        <span class="footer-line"></span>
+      </div>
     </footer>
 
     <script src="contenido.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
+

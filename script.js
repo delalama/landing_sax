@@ -2,6 +2,7 @@ const contenido = window.contenidoLanding || {};
 const idiomas = contenido.idiomas || {};
 const idiomaGuardado = localStorage.getItem("landingIdioma");
 const idiomaNavegador = navigator.language ? navigator.language.slice(0, 2) : "";
+document.documentElement.classList.add("js-motion");
 let idiomaActivo =
   idiomaGuardado ||
   (idiomas[idiomaNavegador] ? idiomaNavegador : contenido.idiomaInicial) ||
@@ -11,8 +12,12 @@ const bookingEmail = contenido.emailBooking || "tuemail@example.com";
 
 const year = document.querySelector("#year");
 const bookingForm = document.querySelector("#bookingForm");
+const siteHeader = document.querySelector(".site-header");
+const revealElements = document.querySelectorAll("[data-reveal]");
 
-year.textContent = new Date().getFullYear();
+if (year) {
+  year.textContent = new Date().getFullYear();
+}
 
 function leerContenido(key) {
   return textos[key] || contenido[key] || "";
@@ -77,19 +82,62 @@ document.querySelectorAll("[data-lang]").forEach((button) => {
 
 aplicarIdioma(idiomaActivo);
 
-bookingForm.addEventListener("submit", (event) => {
-  event.preventDefault();
+function actualizarHeaderEnScroll() {
+  if (!siteHeader) {
+    return;
+  }
 
-  const formData = new FormData(bookingForm);
-  const name = formData.get("name");
-  const email = formData.get("email");
-  const date = formData.get("date") || leerContenido("fechaPorConfirmar") || "Por confirmar";
-  const message = formData.get("message");
+  siteHeader.classList.toggle("is-scrolled", window.scrollY > 12);
+}
 
-  const subject = encodeURIComponent(`${leerContenido("asuntoBooking") || "Solicitud de booking"} - ${name}`);
-  const body = encodeURIComponent(
-    `Nombre: ${name}\nEmail: ${email}\nFecha del evento: ${date}\n\nMensaje:\n${message}`
+function activarRevelado() {
+  if (!revealElements.length) {
+    return;
+  }
+
+  if (!("IntersectionObserver" in window)) {
+    revealElements.forEach((element) => element.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.18, rootMargin: "0px 0px -6% 0px" }
   );
 
-  window.location.href = `mailto:${bookingEmail}?subject=${subject}&body=${body}`;
-});
+  revealElements.forEach((element) => {
+    if (!element.classList.contains("is-visible")) {
+      observer.observe(element);
+    }
+  });
+}
+
+actualizarHeaderEnScroll();
+activarRevelado();
+window.addEventListener("scroll", actualizarHeaderEnScroll, { passive: true });
+
+if (bookingForm) {
+  bookingForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(bookingForm);
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const date = formData.get("date") || leerContenido("fechaPorConfirmar") || "Por confirmar";
+    const message = formData.get("message");
+
+    const subject = encodeURIComponent(`${leerContenido("asuntoBooking") || "Solicitud de booking"} - ${name}`);
+    const body = encodeURIComponent(
+      `Nombre: ${name}\nEmail: ${email}\nFecha del evento: ${date}\n\nMensaje:\n${message}`
+    );
+
+    window.location.href = `mailto:${bookingEmail}?subject=${subject}&body=${body}`;
+  });
+}
