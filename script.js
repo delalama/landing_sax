@@ -90,6 +90,9 @@ bookingForm.addEventListener("submit", (event) => {
   const body = encodeURIComponent(
     `Nombre: ${name}\nEmail: ${email}\nFecha del evento: ${date}\n\nMensaje:\n${message}`
   );
+  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+    bookingEmail
+  )}&su=${subject}&body=${body}`;
 
-  window.location.href = `mailto:${bookingEmail}?subject=${subject}&body=${body}`;
+  window.open(gmailUrl, "_blank", "noopener,noreferrer");
 });

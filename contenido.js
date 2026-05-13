@@ -19,6 +19,11 @@ window.contenidoLanding = {
         "Música en directo, pop, jazz y música de baile",
       youtubeKicker: "Ver canal",
       instagramKicker: "Seguir en",
+      featureEtiqueta: "Directo",
+      featureTitulo: "Un formato flexible para eventos con estilo.",
+      featureTexto:
+        "Desde un cóctel al atardecer hasta una fiesta con repertorio bailable, el saxo aporta presencia, cercanía y una energía elegante sin romper el ambiente.",
+      featureCta: "Consultar disponibilidad",
       destacados: [
         "Repertorio adaptable a cenas, cócteles, ceremonias y experiencias de marca.",
         "Improvisación sobre repertorio dado.",
@@ -56,6 +61,11 @@ window.contenidoLanding = {
         "Live music with a warm, sophisticated and personal sound for private events, celebrations, sessions and stage collaborations.",
       youtubeKicker: "Watch on",
       instagramKicker: "Follow on",
+      featureEtiqueta: "Live",
+      featureTitulo: "A flexible format for events with style.",
+      featureTexto:
+        "From a sunset cocktail to a dance-led celebration, the saxophone brings presence, warmth and refined energy without overwhelming the atmosphere.",
+      featureCta: "Check availability",
       destacados: [
         "A flexible repertoire for dinners, cocktails, ceremonies and brand experiences.",
         "Careful sound, elegant presence and sensitivity for every atmosphere.",
@@ -93,6 +103,11 @@ window.contenidoLanding = {
         "Musique live avec un son chaleureux, sophistiqué et proche pour événements privés, célébrations, sessions et collaborations scéniques.",
       youtubeKicker: "Voir sur",
       instagramKicker: "Suivre sur",
+      featureEtiqueta: "Live",
+      featureTitulo: "Un format flexible pour des événements avec style.",
+      featureTexto:
+        "D’un cocktail au coucher du soleil à une fête avec un répertoire dansant, le saxophone apporte présence, proximité et énergie élégante sans envahir l’ambiance.",
+      featureCta: "Consulter la disponibilité",
       destacados: [
         "Répertoire adaptable aux dîners, cocktails, cérémonies et expériences de marque.",
         "Son soigné, présence élégante et sensibilité pour accompagner chaque ambiance.",
