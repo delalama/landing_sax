@@ -10,14 +10,9 @@ let idiomaActivo =
 let textos = idiomas[idiomaActivo] || idiomas.es || {};
 const bookingEmail = contenido.emailBooking || "tuemail@example.com";
 
-const year = document.querySelector("#year");
 const bookingForm = document.querySelector("#bookingForm");
 const siteHeader = document.querySelector(".site-header");
 const revealElements = document.querySelectorAll("[data-reveal]");
-
-if (year) {
-  year.textContent = new Date().getFullYear();
-}
 
 function leerContenido(key) {
   return textos[key] || contenido[key] || "";
@@ -62,11 +57,6 @@ function aplicarIdioma(nuevoIdioma) {
     if (url) {
       element.href = url;
     }
-  });
-
-  document.querySelectorAll("[data-email-link]").forEach((element) => {
-    element.href = `mailto:${bookingEmail}`;
-    element.textContent = bookingEmail;
   });
 
   document.querySelectorAll("[data-lang]").forEach((button) => {
