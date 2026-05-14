@@ -10,8 +10,10 @@ let idiomaActivo =
 let textos = idiomas[idiomaActivo] || idiomas.es || {};
 const bookingEmail = contenido.emailBooking || "tuemail@example.com";
 
-const bookingForm = document.querySelector("#bookingForm");
+const bookingEmailElement = document.querySelector("[data-booking-email]");
+const copyEmailButton = document.querySelector(".booking-copy");
 const siteHeader = document.querySelector(".site-header");
+const backToTop = document.querySelector(".back-to-top");
 const revealElements = document.querySelectorAll("[data-reveal]");
 
 function leerContenido(key) {
@@ -64,6 +66,18 @@ function aplicarIdioma(nuevoIdioma) {
     button.classList.toggle("is-active", isActive);
     button.setAttribute("aria-pressed", String(isActive));
   });
+
+  actualizarEmailBooking();
+}
+
+function actualizarEmailBooking() {
+  if (bookingEmailElement) {
+    bookingEmailElement.textContent = bookingEmail;
+  }
+
+  if (copyEmailButton) {
+    copyEmailButton.textContent = leerContenido("copiarEmail") || "Copiar email";
+  }
 }
 
 document.querySelectorAll("[data-lang]").forEach((button) => {
@@ -73,11 +87,15 @@ document.querySelectorAll("[data-lang]").forEach((button) => {
 aplicarIdioma(idiomaActivo);
 
 function actualizarHeaderEnScroll() {
-  if (!siteHeader) {
-    return;
+  const isScrolled = window.scrollY > 12;
+
+  if (siteHeader) {
+    siteHeader.classList.toggle("is-scrolled", isScrolled);
   }
 
-  siteHeader.classList.toggle("is-scrolled", window.scrollY > 12);
+  if (backToTop) {
+    backToTop.classList.toggle("is-visible", isScrolled);
+  }
 }
 
 function activarRevelado() {
@@ -113,21 +131,14 @@ actualizarHeaderEnScroll();
 activarRevelado();
 window.addEventListener("scroll", actualizarHeaderEnScroll, { passive: true });
 
-if (bookingForm) {
-  bookingForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(bookingForm);
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const date = formData.get("date") || leerContenido("fechaPorConfirmar") || "Por confirmar";
-    const message = formData.get("message");
-
-    const subject = encodeURIComponent(`${leerContenido("asuntoBooking") || "Solicitud de booking"} - ${name}`);
-    const body = encodeURIComponent(
-      `Nombre: ${name}\nEmail: ${email}\nFecha del evento: ${date}\n\nMensaje:\n${message}`
-    );
-
-    window.location.href = `mailto:${bookingEmail}?subject=${subject}&body=${body}`;
+if (copyEmailButton) {
+  copyEmailButton.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(bookingEmail);
+      copyEmailButton.textContent = leerContenido("emailCopiado") || "Email copiado";
+      window.setTimeout(actualizarEmailBooking, 1800);
+    } catch (error) {
+      actualizarEmailBooking();
+    }
   });
 }

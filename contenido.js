@@ -38,7 +38,14 @@ window.contenidoLanding = {
       bookingEtiqueta: "Booking",
       bookingTitulo: "Cuéntame la fecha, el lugar y el tipo de evento.",
       bookingTexto:
-        "El formulario abrirá tu correo con el mensaje preparado. Rellena aquí tu email para recibir solicitudes de eventos.",
+        "Para propuestas privadas, eventos y colaboraciones seleccionadas, escribe por email con los detalles esenciales.",
+      bookingEmailIntro:
+        "Fechas privadas, hoteles, marcas y celebraciones con una propuesta cuidada.",
+      bookingEmailLabel: "Email directo",
+      bookingEmailHint:
+        "Incluye fecha, ciudad, tipo de evento y una breve idea del ambiente.",
+      copiarEmail: "Copiar email",
+      emailCopiado: "Email copiado",
       campoNombre: "Nombre",
       campoEmail: "Email",
       campoFecha: "Fecha del evento",
@@ -79,7 +86,14 @@ window.contenidoLanding = {
       bookingEtiqueta: "Booking",
       bookingTitulo: "Tell me the date, place and type of event.",
       bookingTexto:
-        "The form will open your email client with a prepared message. Fill in your email here to receive event requests.",
+        "For private proposals, events and selected collaborations, write by email with the essential details.",
+      bookingEmailIntro:
+        "Private dates, hotels, brands and celebrations with a carefully shaped proposal.",
+      bookingEmailLabel: "Direct email",
+      bookingEmailHint:
+        "Include date, city, type of event and a short sense of the atmosphere.",
+      copiarEmail: "Copy email",
+      emailCopiado: "Email copied",
       campoNombre: "Name",
       campoEmail: "Email",
       campoFecha: "Event date",
@@ -121,7 +135,14 @@ window.contenidoLanding = {
       bookingEtiqueta: "Booking",
       bookingTitulo: "Nenne mir Datum, Ort und Art des Events.",
       bookingTexto:
-        "Das Formular oeffnet dein E-Mail-Programm mit vorbereiteter Nachricht. Trage hier deine Daten fuer Event-Anfragen ein.",
+        "Fuer private Anfragen, Events und ausgewaehlte Kollaborationen schreibe bitte per E-Mail mit den wichtigsten Details.",
+      bookingEmailIntro:
+        "Private Termine, Hotels, Marken und Feiern mit einem sorgfaeltig abgestimmten Konzept.",
+      bookingEmailLabel: "Direkte E-Mail",
+      bookingEmailHint:
+        "Bitte Datum, Stadt, Art des Events und eine kurze Idee der Atmosphaere angeben.",
+      copiarEmail: "E-Mail kopieren",
+      emailCopiado: "E-Mail kopiert",
       campoNombre: "Name",
       campoEmail: "E-Mail",
       campoFecha: "Event-Datum",
@@ -162,7 +183,14 @@ window.contenidoLanding = {
       bookingEtiqueta: "Booking",
       bookingTitulo: "Indiquez-moi la date, le lieu et le type d’événement.",
       bookingTexto:
-        "Le formulaire ouvrira votre client email avec un message préparé. Renseignez ici votre email pour recevoir les demandes d’événements.",
+        "Pour propositions privees, evenements et collaborations selectionnees, ecrivez par email avec les details essentiels.",
+      bookingEmailIntro:
+        "Dates privees, hotels, marques et celebrations avec une proposition soignee.",
+      bookingEmailLabel: "Email direct",
+      bookingEmailHint:
+        "Indiquez la date, la ville, le type d'evenement et une breve idee de l'ambiance.",
+      copiarEmail: "Copier l'email",
+      emailCopiado: "Email copie",
       campoNombre: "Nom",
       campoEmail: "Email",
       campoFecha: "Date de l’événement",

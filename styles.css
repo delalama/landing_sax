@@ -136,6 +136,43 @@ a {
   gap: 22px;
 }
 
+.back-to-top {
+  position: fixed;
+  z-index: 19;
+  top: 18px;
+  right: clamp(16px, 3vw, 34px);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(198, 164, 118, 0.38);
+  border-radius: 50%;
+  background:
+    linear-gradient(145deg, rgba(243, 238, 228, 0.1), rgba(8, 10, 13, 0.72)),
+    rgba(8, 10, 13, 0.84);
+  color: var(--paper);
+  font-size: 22px;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+  transition: opacity 220ms ease, transform 220ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.back-to-top:hover {
+  border-color: rgba(200, 164, 107, 0.9);
+  color: var(--gold);
+  transform: translateY(-10px);
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
 .language-switcher {
   gap: 8px;
   padding: 6px;
@@ -556,14 +593,63 @@ h2 {
   line-height: 1.75;
 }
 
-.booking-form {
+.booking-contact {
   display: grid;
-  gap: 18px;
-  padding: clamp(22px, 4vw, 34px);
+  gap: 22px;
+  padding: clamp(24px, 4vw, 38px);
   border: 1px solid rgba(248, 243, 232, 0.2);
-  background: rgba(243, 238, 228, 0.06);
+  background:
+    linear-gradient(145deg, rgba(243, 238, 228, 0.1), rgba(243, 238, 228, 0.035)),
+    rgba(7, 10, 13, 0.52);
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
+}
+
+.booking-contact__intro,
+.booking-contact__hint {
+  margin: 0;
+}
+
+.booking-contact__intro {
+  color: var(--paper);
+  font-size: clamp(19px, 2vw, 25px);
+  line-height: 1.45;
+}
+
+.booking-contact__email {
+  display: grid;
+  gap: 8px;
+  padding-block: 20px;
+  border-block: 1px solid rgba(198, 164, 118, 0.28);
+}
+
+.booking-contact__email span {
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.booking-contact__email strong {
+  color: var(--paper);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 900;
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+}
+
+.booking-copy {
+  width: fit-content;
+  min-width: 178px;
+  padding-inline: 24px;
+}
+
+.booking-contact__hint {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 label {
@@ -705,6 +791,14 @@ button:hover {
     gap: 18px;
     justify-content: center;
     white-space: nowrap;
+  }
+
+  .back-to-top {
+    top: 12px;
+    right: 14px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
   }
 
   .site-footer {
@@ -887,7 +981,11 @@ button:hover {
     width: 100%;
   }
 
-  .booking-form {
+  .booking-contact {
     padding: 20px;
+  }
+
+  .booking-copy {
+    width: 100%;
   }
 }

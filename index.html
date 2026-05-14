@@ -60,6 +60,10 @@
       </div>
     </header>
 
+    <a class="back-to-top" href="#inicio" aria-label="Volver arriba">
+      <span aria-hidden="true">↑</span>
+    </a>
+
     <main id="inicio">
       <section class="hero" aria-label="Presentación">
         <img class="hero-image" src="assets/hero-personal.png" alt="Saxofonista interpretando con saxofón">
@@ -137,30 +141,26 @@
             <p class="eyebrow" data-content="bookingEtiqueta">Booking</p>
             <h2 data-content="bookingTitulo">Cuéntame la fecha, el lugar y el tipo de evento.</h2>
             <p data-content="bookingTexto">
-              El formulario abrirá tu correo con el mensaje preparado. Cambia el email de destino
-              en el archivo para dejarlo conectado a tu bandeja.
+              Para propuestas privadas, eventos y colaboraciones seleccionadas, escribe por email
+              con los detalles esenciales.
             </p>
           </div>
 
-          <form class="booking-form" id="bookingForm">
-            <label>
-              <span data-content="campoNombre">Nombre</span>
-              <input type="text" name="name" autocomplete="name" required>
-            </label>
-            <label>
-              <span data-content="campoEmail">Email</span>
-              <input type="email" name="email" autocomplete="email" required>
-            </label>
-            <label>
-              <span data-content="campoFecha">Fecha del evento</span>
-              <input type="date" name="date">
-            </label>
-            <label>
-              <span data-content="campoMensaje">Mensaje</span>
-              <textarea name="message" rows="5" data-placeholder="placeholderMensaje" placeholder="Tipo de evento, ciudad, horario aproximado..." required></textarea>
-            </label>
-            <button type="submit" data-content="enviarSolicitud">Enviar solicitud</button>
-          </form>
+          <div class="booking-contact" aria-labelledby="bookingEmailLabel">
+            <p class="booking-contact__intro" data-content="bookingEmailIntro">
+              Fechas privadas, hoteles, marcas y celebraciones con una propuesta cuidada.
+            </p>
+            <div class="booking-contact__email">
+              <span id="bookingEmailLabel" data-content="bookingEmailLabel">Email directo</span>
+              <strong data-booking-email>elaltas@gmail.com</strong>
+            </div>
+            <button class="booking-copy" type="button" data-content="copiarEmail">
+              Copiar email
+            </button>
+            <p class="booking-contact__hint" data-content="bookingEmailHint">
+              Incluye fecha, ciudad, tipo de evento y una breve idea del ambiente.
+            </p>
+          </div>
         </div>
       </section>
     </main>
