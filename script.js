@@ -23,11 +23,11 @@ function aplicarIdioma(nuevoIdioma) {
   textos = idiomas[idiomaActivo] || idiomas.es || {};
   localStorage.setItem("landingIdioma", idiomaActivo);
   document.documentElement.lang = idiomaActivo;
-  document.title = "Jesús Sax";
+  document.title = "\u200b";
 
   const metaDescription = document.querySelector('meta[name="description"]');
-  if (metaDescription && leerContenido("metaDescripcion")) {
-    metaDescription.setAttribute("content", leerContenido("metaDescripcion"));
+  if (metaDescription) {
+    metaDescription.setAttribute("content", "\u200b");
   }
 
   document.querySelectorAll("[data-content]").forEach((element) => {
