@@ -23,7 +23,7 @@ function aplicarIdioma(nuevoIdioma) {
   textos = idiomas[idiomaActivo] || idiomas.es || {};
   localStorage.setItem("landingIdioma", idiomaActivo);
   document.documentElement.lang = idiomaActivo;
-  document.title = "\u200b";
+  document.title = "JDL SAX";
 
   const metaDescription = document.querySelector('meta[name="description"]');
   if (metaDescription) {
