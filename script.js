@@ -23,11 +23,11 @@ function aplicarIdioma(nuevoIdioma) {
   textos = idiomas[idiomaActivo] || idiomas.es || {};
   localStorage.setItem("landingIdioma", idiomaActivo);
   document.documentElement.lang = idiomaActivo;
-  document.title = "\u200b";
+  document.title = "Jesús de la Lama sax";
 
   const metaDescription = document.querySelector('meta[name="description"]');
   if (metaDescription) {
-    metaDescription.setAttribute("content", "\u200b");
+    metaDescription.setAttribute("content", "Instagram, youtube and booking");
   }
 
   document.querySelectorAll("[data-content]").forEach((element) => {
