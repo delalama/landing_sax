@@ -13,6 +13,7 @@ window.contenidoLanding = {
       metaDescripcion: "Landing personal de saxofonista: música, redes y booking.",
       navSobreMi: "Sobre mí",
       navBooking: "Booking",
+      navRepertorio: "Repertorio",
       etiquetaHero: "Saxofonista · Directos · Eventos",
       tituloHero: "Jazz , pop y música de baile",
       textoHero:
@@ -61,6 +62,7 @@ window.contenidoLanding = {
       metaDescripcion: "Personal landing page for a saxophonist: music, channels and booking.",
       navSobreMi: "About",
       navBooking: "Booking",
+      navRepertorio: "Repertoire",
       etiquetaHero: "Saxophonist · Live Sets · Events",
       tituloHero: "Elegant sound for memorable moments.",
       textoHero:
@@ -110,6 +112,7 @@ window.contenidoLanding = {
       metaDescripcion: "Persoenliche Landingpage fuer einen Saxophonisten: Musik, Kanaele und Booking.",
       navSobreMi: "Ueber mich",
       navBooking: "Booking",
+      navRepertorio: "Repertoire",
       etiquetaHero: "Saxophonist · Live · Events",
       tituloHero: "Jazz, Pop und Tanzmusik",
       textoHero:
@@ -158,6 +161,7 @@ window.contenidoLanding = {
       metaDescripcion: "Landing page personnelle de saxophoniste : musique, réseaux et booking.",
       navSobreMi: "À propos",
       navBooking: "Booking",
+      navRepertorio: "Repertoire",
       etiquetaHero: "Saxophoniste · Live · Événements",
       tituloHero: "Une élégance sonore pour des moments mémorables.",
       textoHero:
