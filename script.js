@@ -15,9 +15,29 @@ const copyEmailButton = document.querySelector(".booking-copy");
 const siteHeader = document.querySelector(".site-header");
 const backToTop = document.querySelector(".back-to-top");
 const revealElements = document.querySelectorAll("[data-reveal]");
+const repertoireUrl = "https://delalama.github.io/sax_repertoire/";
 
 function leerContenido(key) {
   return textos[key] || contenido[key] || "";
+}
+
+function resaltarRepertorio(element, text) {
+  const match = text.match(/(Repertorio|repertoire|Repertoire|RÃ©pertoire|Répertoire)/);
+  if (!match || match.index === undefined) {
+    element.textContent = text;
+    return;
+  }
+
+  const link = document.createElement("a");
+  link.className = "repertoire-link";
+  link.href = repertoireUrl;
+  link.textContent = match[0];
+
+  element.replaceChildren(
+    document.createTextNode(text.slice(0, match.index)),
+    link,
+    document.createTextNode(text.slice(match.index + match[0].length))
+  );
 }
 
 function aplicarIdioma(nuevoIdioma) {
@@ -43,7 +63,11 @@ function aplicarIdioma(nuevoIdioma) {
     const list = leerContenido(element.dataset.list);
     const index = Number(element.dataset.index);
     if (Array.isArray(list) && list[index]) {
-      element.textContent = list[index];
+      if (element.hasAttribute("data-repertoire-link")) {
+        resaltarRepertorio(element, list[index]);
+      } else {
+        element.textContent = list[index];
+      }
     }
   });
 

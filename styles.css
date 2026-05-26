@@ -474,6 +474,19 @@ h2 {
   line-height: 1.65;
 }
 
+.repertoire-link {
+  color: var(--gold);
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+  transition: color 180ms ease, text-decoration-color 180ms ease;
+}
+
+.repertoire-link:hover {
+  color: #f2d7a8;
+}
+
 .feature-section {
   display: grid;
   grid-template-columns: minmax(320px, 0.82fr) minmax(0, 0.8fr);
