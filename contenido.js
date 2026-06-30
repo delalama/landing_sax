@@ -3,7 +3,7 @@ window.contenidoLanding = {
   inicial: "J",
   profesion: "Saxofonista",
   emailBooking: "elaltas@gmail.com",
-  youtubeUrl: "https://www.youtube.com/@elaltas",
+  youtubeUrl: "https://www.youtube.com/@elaltas?sub_confirmation=1",
   instagramUrl: "https://www.instagram.com/jesusdelalamasax/",
   idiomaInicial: "es",
 
