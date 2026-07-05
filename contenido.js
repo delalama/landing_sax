@@ -10,14 +10,14 @@ window.contenidoLanding = {
   idiomas: {
     es: {
       etiqueta: "Español",
-      metaDescripcion: "Landing personal de saxofonista: música, redes y booking.",
+      metaDescripcion: "Saxofonista para bodas, hoteles y eventos en Mallorca con música en directo elegante y adaptable.",
       navSobreMi: "Sobre mí",
       navBooking: "Booking",
       navRepertorio: "Repertorio",
       etiquetaHero: "Saxofonista · Directos · Eventos",
-      tituloHero: "Jazz , pop y música de baile",
+      tituloHero: "Saxofonista en Mallorca para bodas, hoteles y eventos",
       textoHero:
-        "Música en directo, pop, jazz y música de baile",
+        "Música en directo con saxo para ceremonias, cócteles, cenas, hoteles, eventos privados y celebraciones con un ambiente cuidado.",
       youtubeKicker: "Ver canal",
       instagramKicker: "Seguir en",
       featureEtiqueta: "Directo",
@@ -26,8 +26,8 @@ window.contenidoLanding = {
         "Desde un cóctel al atardecer hasta una fiesta con repertorio bailable, el saxo aporta presencia, cercanía y una energía elegante sin romper el ambiente.",
       featureCta: "Consultar disponibilidad",
       destacados: [
-        "Repertorio adaptable a cenas, cócteles, ceremonias y experiencias de marca.",
-        "Improvisación sobre repertorio dado.",
+        "Repertorio adaptable a cenas, cócteles, ceremonias, hoteles y experiencias de marca.",
+        "Improvisación sobre repertorio dado y colaboración con DJs cuando el evento lo pide.",
         "Sonido cuidado, presencia elegante y sensibilidad para acompañar cada ambiente."
       ],
       sobreMiEtiqueta: "Sobre mí",

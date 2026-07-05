@@ -15,7 +15,8 @@ const copyEmailButton = document.querySelector(".booking-copy");
 const siteHeader = document.querySelector(".site-header");
 const backToTop = document.querySelector(".back-to-top");
 const revealElements = document.querySelectorAll("[data-reveal]");
-const repertoireUrl = "https://delalama.github.io/sax_repertoire/";
+const repertoireUrl = "repertorio/index.html";
+const shouldLocalizePage = document.documentElement.hasAttribute("data-localized");
 
 function leerContenido(key) {
   return textos[key] || contenido[key] || "";
@@ -44,12 +45,9 @@ function aplicarIdioma(nuevoIdioma) {
   idiomaActivo = idiomas[nuevoIdioma] ? nuevoIdioma : "es";
   textos = idiomas[idiomaActivo] || idiomas.es || {};
   localStorage.setItem("landingIdioma", idiomaActivo);
-  document.documentElement.lang = idiomaActivo;
-  document.title = "JDL SAX";
 
-  const metaDescription = document.querySelector('meta[name="description"]');
-  if (metaDescription) {
-    metaDescription.setAttribute("content", "\u200b");
+  if (shouldLocalizePage) {
+    document.documentElement.lang = idiomaActivo;
   }
 
   document.querySelectorAll("[data-content]").forEach((element) => {

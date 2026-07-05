@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://delalama.github.io/landing_sax/sitemap.xml

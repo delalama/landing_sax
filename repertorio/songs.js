@@ -1,0 +1,191 @@
+const STYLE_LABELS = {
+  A: "Party / Dance",
+  B: "Pop / Soul / Chill",
+  C: "Jazz / Standards",
+  N: "Carols",
+  L: "Lounge"
+};
+
+const LOCALIZED_STYLE_LABELS = {
+  es: { A: "Fiesta / Baile", B: "Pop / Soul / Chill", C: "Jazz / Standards", N: "Nadalas", L: "Lounge" },
+  en: { A: "Party / Dance", B: "Pop / Soul / Chill", C: "Jazz / Standards", N: "Carols", L: "Lounge" },
+  de: { A: "Party / Tanz", B: "Pop / Soul / Chill", C: "Jazz / Standards", N: "Weihnachtslieder", L: "Lounge" },
+  fr: { A: "Fete / Danse", B: "Pop / Soul / Chill", C: "Jazz / Standards", N: "Chants de Noel", L: "Lounge" }
+};
+
+function expandSong(song) {
+  const codes = song.styles.toUpperCase().replace(/[^A-Z]/g, "").split("");
+  const genres = codes;
+
+  return {
+    ...song,
+    codes,
+    genres,
+    genre: genres.join(" / ")
+  };
+}
+
+const repertoire = [
+  { id: "a01", artist: "Stevie Wonder", title: "As", styles: "A", key: "Bb", difficulty: 2, status: "Repertorio" },
+  { id: "a02", artist: "The Weeknd", title: "Blinding Lights", styles: "A", key: "Eb", difficulty: 2, status: "Repertorio" },
+  { id: "a03", artist: "Kylie Minogue", title: "Can´t Get You Out of My Head", styles: "A", key: "Dm", difficulty: 1, status: "Repertorio" },
+  { id: "a04", artist: "Planet Funk", title: "Chase the Sun", styles: "A", key: "Am", difficulty: 1, status: "Repertorio" },
+  { id: "a05", artist: "Elton John & Dua Lipa", title: "Cold Heart", styles: "A", key: "Cm", difficulty: 1, status: "Repertorio" },
+  { id: "a06", artist: "Tones and I", title: "Dance Monkey", styles: "A", key: "Gbm", difficulty: 1, status: "Repertorio" },
+  { id: "a07", artist: "Alex Gaudino feat. Crystal Waters", title: "Destination Calabria", styles: "A", key: "Dm", difficulty: 2, status: "Repertorio" },
+  { id: "a08", artist: "Gala", title: "Freed from Desire", styles: "A", key: "Dm", difficulty: 1, status: "Repertorio" },
+  { id: "a09", artist: "Daft Punk feat. Pharrell Williams", title: "Get Lucky", styles: "A", key: "Bbm", difficulty: 1, status: "Repertorio" },
+  { id: "a10", artist: "Spiller feat. Sophie Ellis-Bextor", title: "Groovejet", styles: "A", key: "Am", difficulty: 2, status: "Repertorio" },
+  { id: "a11", artist: "Camila Cabello", title: "Havana", styles: "A", key: "Gm", difficulty: 1, status: "Repertorio" },
+  { id: "a12", artist: "Stevie Wonder", title: "I Wish", styles: "A", key: "Ebm", difficulty: 1, status: "Repertorio" },
+  { id: "a13", artist: "Faithless", title: "Insomnia", styles: "A", key: "Cm", difficulty: 1, status: "Repertorio" },
+  { id: "a14", artist: "Modjo", title: "Lady Hear Me", styles: "A", key: "Bbm", difficulty: 1, status: "Repertorio" },
+  { id: "a15", artist: "Stevie Wonder", title: "Master Blaster", styles: "A", key: "Cm", difficulty: 3, status: "Repertorio" },
+  { id: "a16", artist: "Bellini", title: "Samba de Janeiro", styles: "A", key: "Am", difficulty: 1, status: "Repertorio" },
+  { id: "a17", artist: "Ed Sheeran", title: "Shape of You", styles: "A", key: "Cm", difficulty: 1, status: "Repertorio" },
+  { id: "a18", artist: "Karol G", title: "Si Antes Te Hubiera Conocido", styles: "A", key: "Bb", difficulty: 1, status: "Repertorio" },
+  { id: "a19", artist: "Stevie Wonder", title: "Superstition", styles: "A", key: "Ebm", difficulty: 1, status: "Repertorio" },
+  { id: "a20", artist: "Mark Ronson feat. Bruno Mars", title: "Uptown Funk", styles: "A", key: "Dm", difficulty: 2, status: "Repertorio" },
+  { id: "a21", artist: "Amy Winehouse", title: "Valerie", styles: "AB", key: "Eb", difficulty: 1, status: "Repertorio" },
+
+  { id: "b01", artist: "The Beatles", title: "In My Life", styles: "B", key: "Ab", difficulty: 1, status: "Repertorio" },
+  { id: "b02", artist: "Cher", title: "Believe", styles: "B", key: "Eb", difficulty: 1, status: "Repertorio" },
+  { id: "b03", artist: "Michael Jackson", title: "Billie Jean", styles: "B", key: "Fm", difficulty: 2, status: "Repertorio" },
+  { id: "b04", artist: "The Corrs", title: "Breathless", styles: "B", key: "Bb", difficulty: 1, status: "Repertorio" },
+  { id: "b05", artist: "Elvis Presley", title: "Can´t Help Falling in Love", styles: "B", key: "Db", difficulty: 1, status: "Repertorio" },
+  { id: "b06", artist: "George Michael", title: "Careless Whisper", styles: "B", key: "Dm", difficulty: 2, status: "Repertorio" },
+  { id: "b07", artist: "Miley Cyrus", title: "Flowers", styles: "B", key: "C", difficulty: 1, status: "Repertorio" },
+  { id: "b08", artist: "The Beatles", title: "Hey Jude", styles: "B", key: "F", difficulty: 1, status: "Repertorio" },
+  { id: "b09", artist: "Bob Marley & The Wailers", title: "I Shot the Sheriff", styles: "B", key: "Gm", difficulty: 2, status: "Repertorio" },
+  { id: "b10", artist: "Alicia Keys", title: "If I Ain´t Got You", styles: "B", key: "Gm", difficulty: 3, status: "Repertorio" },
+  { id: "b11", artist: "John Lennon", title: "Imagine", styles: "B", key: "C", difficulty: 1, status: "Repertorio" },
+  { id: "b12", artist: "Bob Dylan", title: "Knockin on Heaven´s Door", styles: "B", key: "F#", difficulty: 1, status: "Repertorio" },
+  { id: "b13", artist: "Frank Sinatra", title: "My Way", styles: "B", key: "Eb", difficulty: 2, status: "Repertorio" },
+  { id: "b14", artist: "Ed Sheeran", title: "Perfect", styles: "B", key: "Ab", difficulty: 1, status: "Repertorio" },
+  { id: "b15", artist: "Sting", title: "Shape of My Heart", styles: "B", key: "Gm", difficulty: 3, status: "Repertorio" },
+  { id: "b16", artist: "Sade", title: "Smooth Operator", styles: "B", key: "Dm", difficulty: 2, status: "Repertorio" },
+  { id: "b17", artist: "Elton John", title: "Sorry Seems to Be the Hardest Word", styles: "B", key: "Gm", difficulty: 2, status: "Repertorio" },
+  { id: "b18", artist: "Maroon 5", title: "This Love", styles: "B", key: "Cm", difficulty: 2, status: "Repertorio" },
+  { id: "b19", artist: "Michael Jackson", title: "Billie Jean Lounge", styles: "B", key: "Dm", difficulty: 2, status: "Repertorio" },
+  { id: "b20", artist: "Nexeri", title: "Knockin on Heaven´s Door", styles: "B", key: "Bb", difficulty: 1, status: "Repertorio" },
+
+  { id: "b21", artist: "Dido", title: "Thank You", styles: "Bb", key: "Por confirmar", difficulty: 2, status: "To learn" },
+
+  { id: "n01", artist: "Traditional", title: "Jingle Bells", styles: "N", key: "Por confirmar", difficulty: 1, status: "Partitura" },
+  { id: "n02", artist: "Traditional", title: "Angels We Have Heard On High", styles: "N", key: "Por confirmar", difficulty: 2, status: "Partitura" },
+  { id: "n03", artist: "Traditional", title: "Auld Lang Syne", styles: "N", key: "Por confirmar", difficulty: 1, status: "Partitura" },
+  { id: "n04", artist: "Traditional", title: "Away In A Manger", styles: "N", key: "Por confirmar", difficulty: 1, status: "Partitura" },
+  { id: "n05", artist: "Traditional", title: "Deck The Halls", styles: "N", key: "Por confirmar", difficulty: 1, status: "Partitura" },
+  { id: "n06", artist: "Traditional", title: "Go Tell It On The Mountain", styles: "N", key: "Por confirmar", difficulty: 1, status: "Partitura" },
+  { id: "n07", artist: "Traditional", title: "God Rest Ye Merry Gentlemen", styles: "N", key: "Por confirmar", difficulty: 2, status: "Partitura" },
+  { id: "n08", artist: "Traditional", title: "Good King Wenceslas", styles: "N", key: "Por confirmar", difficulty: 1, status: "Partitura" },
+  { id: "n09", artist: "Traditional", title: "Hark, the Herald Angels Sing", styles: "N", key: "Por confirmar", difficulty: 2, status: "Partitura" },
+  { id: "n10", artist: "Traditional", title: "It Came Upon The Midnight Clear", styles: "N", key: "Por confirmar", difficulty: 1, status: "Partitura" },
+  { id: "n11", artist: "Traditional", title: "Jolly Old Saint Nicholas", styles: "N", key: "Por confirmar", difficulty: 1, status: "Partitura" },
+  { id: "n12", artist: "Traditional", title: "Joy to the World", styles: "N", key: "Por confirmar", difficulty: 1, status: "Partitura" },
+  { id: "n13", artist: "Traditional", title: "O Come All Ye Faithful", styles: "N", key: "Por confirmar", difficulty: 1, status: "Partitura" },
+  { id: "n14", artist: "Traditional", title: "O Little Town Of Bethlehem", styles: "N", key: "Por confirmar", difficulty: 1, status: "Partitura" },
+  { id: "n15", artist: "Traditional", title: "O Tannenbaum (O Christmas Tree)", styles: "N", key: "Por confirmar", difficulty: 1, status: "Partitura" },
+  { id: "n16", artist: "Traditional", title: "The Holly and the Ivy", styles: "N", key: "Por confirmar", difficulty: 1, status: "Partitura" },
+  { id: "n17", artist: "Traditional", title: "We Three Kings", styles: "N", key: "Por confirmar", difficulty: 2, status: "Partitura" },
+  { id: "n18", artist: "Traditional", title: "What Child Is This", styles: "N", key: "Por confirmar", difficulty: 2, status: "Partitura" },
+  { id: "n19", artist: "Traditional", title: "We Wish You A Merry Christmas", styles: "N", key: "Por confirmar", difficulty: 1, status: "Partitura" },
+  { id: "n20", artist: "Traditional", title: "Silent Night", styles: "N", key: "Por confirmar", difficulty: 1, status: "Partitura" },
+
+  { id: "ab01", artist: "Radiohead", title: "Creep", styles: "AB", key: "F", difficulty: 1, status: "To learn" },
+  { id: "ab02", artist: "The Police", title: "Every Breath You Take", styles: "AB", key: "G", difficulty: 1, status: "To learn" },
+  { id: "ab03", artist: "Klingande", title: "Jubel", styles: "AB", key: "Por confirmar", difficulty: 2, status: "Repertorio" },
+  { id: "ab04", artist: "Dua Lipa", title: "One Kiss", styles: "AB", key: "Am", difficulty: 1, status: "To learn" },
+  { id: "ab05", artist: "Stevie Wonder", title: "Living for the City", styles: "AB", key: "Por confirmar", difficulty: 3, status: "To learn" },
+  { id: "ab06", artist: "Santana", title: "Love of My Life", styles: "AB", key: "Fm", difficulty: 3, status: "To learn" },
+  { id: "ab07", artist: "Stevie Wonder", title: "My Cherie Amour", styles: "AB", key: "Db", difficulty: 2, status: "To learn" },
+  { id: "ab08", artist: "Sheryl Crow", title: "Ironic", styles: "AB", key: "Bb", difficulty: 1, status: "To learn" },
+  { id: "ab09", artist: "Ben E. King", title: "Stand by Me", styles: "AB", key: "Ab", difficulty: 1, status: "To learn" },
+  { id: "ab10", artist: "Vicente Amigo", title: "Tres Notas Para Decir Te Quiero", styles: "AB", key: "Em", difficulty: 3, status: "To learn" },
+  { id: "ab11", artist: "The Beatles", title: "Yesterday", styles: "AB", key: "F", difficulty: 2, status: "To learn" },
+  { id: "ab12", artist: "Elton John", title: "Your Song", styles: "AB", key: "D", difficulty: 2, status: "To learn" },
+  { id: "ab13", artist: "Gerry Rafferty", title: "Baker Street", styles: "AB", key: "Dm", difficulty: 3, status: "Repertorio" },
+  { id: "ab14", artist: "Alexandra Stan", title: "Mr. Saxobeat", styles: "A", key: "Por confirmar", difficulty: 2, status: "To learn" },
+  { id: "ab15", artist: "Lost Frequencies", title: "Are You With Me", styles: "AB", key: "Fm", difficulty: 1, status: "Repertorio" },
+  { id: "ab16", artist: "Jessy J", title: "Mas Que Nada", styles: "A", key: "Fm", difficulty: 3, status: "Repertorio" },
+  { id: "ab17", artist: "Crystal Waters", title: "Gypsy Woman", styles: "A", key: "Dm", difficulty: 2, status: "Repertorio" },
+  { id: "ab18", artist: "Blank & Jones", title: "Sunny", styles: "AB", key: "Cm", difficulty: 2, status: "Repertorio" },
+  { id: "ab19", artist: "OMI", title: "Cheerleader", styles: "AB", key: "Eb", difficulty: 1, status: "Repertorio" },
+  { id: "ab20", artist: "Freischwimmer", title: "California Dreamin", styles: "AB", key: "Dm", difficulty: 2, status: "Repertorio" },
+  { id: "ab21", artist: "Jubel feat. NEIMY", title: "Dancing in the Moonlight", styles: "AB", key: "Bb", difficulty: 1, status: "Repertorio" },
+  { id: "ab22", artist: "Harry Styles", title: "As It Was", styles: "AB", key: "Bb", difficulty: 1, status: "Repertorio" },
+  { id: "ab23", artist: "Bill Medley & Jennifer Warnes", title: "(I've Had) The Time of My Life", styles: "AB", key: "E", difficulty: 3, status: "To learn" },
+
+  { id: "l01", artist: "Christina Perri", title: "A Thousand Years", styles: "L", key: "Bb", difficulty: 1, status: "To learn" },
+  { id: "l02", artist: "Coldplay", title: "Adventure of a Lifetime", styles: "L", key: "Gm", difficulty: 2, status: "To learn" },
+  { id: "l03", artist: "Harry Styles", title: "As It Was", styles: "L", key: "A", difficulty: 1, status: "To learn" },
+  { id: "l04", artist: "Daniel Caesar feat. H.E.R.", title: "Best Part", styles: "L", key: "D", difficulty: 2, status: "To learn" },
+  { id: "l05", artist: "Michael Jackson", title: "Billie Jean", styles: "L", key: "Em", difficulty: 2, status: "To learn" },
+  { id: "l06", artist: "Elvis Presley", title: "Can't Help Falling in Love", styles: "L", key: "C", difficulty: 1, status: "To learn" },
+  { id: "l07", artist: "The Carpenters", title: "Close To You", styles: "L", key: "G", difficulty: 1, status: "To learn" },
+  { id: "l08", artist: "Elton John & Dua Lipa", title: "Cold Heart", styles: "L", key: "Bbm", difficulty: 1, status: "To learn" },
+  { id: "l09", artist: "Lady Gaga & Bruno Mars", title: "Die With a Smile", styles: "L", key: "F", difficulty: 2, status: "To learn" },
+  { id: "l10", artist: "Adele", title: "Easy On Me", styles: "L", key: "F", difficulty: 2, status: "To learn" },
+  { id: "l11", artist: "Tears for Fears", title: "Everybody Wants to Rule the World", styles: "L", key: "C", difficulty: 2, status: "To learn" },
+  { id: "l12", artist: "Simply Red", title: "Holding Back the Years", styles: "L", key: "C", difficulty: 2, status: "To learn" },
+  { id: "l13", artist: "Michael Buble", title: "Home", styles: "L", key: "G", difficulty: 1, status: "To learn" },
+  { id: "l14", artist: "Aerosmith", title: "I Don't Wanna Miss a Thing", styles: "L", key: "D", difficulty: 2, status: "To learn" },
+  { id: "l15", artist: "The Weeknd feat. Daft Punk", title: "I Feel It Coming", styles: "L", key: "Cm", difficulty: 2, status: "To learn" },
+  { id: "l16", artist: "John Lennon", title: "Imagine", styles: "L", key: "F", difficulty: 1, status: "To learn" },
+  { id: "l17", artist: "Teddy Swims", title: "Lose Control", styles: "L", key: "Gm", difficulty: 2, status: "To learn" },
+  { id: "l18", artist: "Maroon 5 feat. Chtinrisa Aguilera", title: "Moves like Jagger", styles: "L", key: "Bbm", difficulty: 2, status: "To learn" },
+  { id: "l19", artist: "Ed Sheeran", title: "Perfect", styles: "L", key: "Ab", difficulty: 1, status: "To learn" },
+  { id: "l20", artist: "Maroon 5", title: "Sunday Morning", styles: "L", key: "C", difficulty: 2, status: "To learn" },
+  { id: "l21", artist: "Ed Sheeran", title: "Thinking Out Loud", styles: "L", key: "Bb", difficulty: 2, status: "To learn" },
+  { id: "l22", artist: "Spandau Ballet", title: "True", styles: "L", key: "D", difficulty: 2, status: "To learn" },
+  { id: "l23", artist: "4 Non Blondes", title: "What's Up", styles: "L", key: "A", difficulty: 1, status: "To learn" },
+
+  
+  { id: "c01", artist: "Jerome Kern", title: "All the Things You Are", styles: "C", key: "Ab", difficulty: 3, status: "Repertorio" },
+  { id: "c02", artist: "Joseph Kosma", title: "Autumn Leaves", styles: "C", key: "Gm", difficulty: 2, status: "Repertorio" },
+  { id: "c03", artist: "Consuelo Velazquez", title: "Besame Mucho", styles: "C", key: "Cm", difficulty: 2, status: "Repertorio" },
+  { id: "c04", artist: "Kenny Dorham", title: "Blue Bossa", styles: "C", key: "Cm", difficulty: 2, status: "Repertorio" },
+  { id: "c05", artist: "Herbie Hancock", title: "Cantaloupe Island", styles: "C", key: "Fm", difficulty: 2, status: "Repertorio" },
+  { id: "c06", artist: "Erroll Garner", title: "Misty", styles: "C", key: "Eb", difficulty: 3, status: "Repertorio" },
+  { id: "c07", artist: "Clifford Brown", title: "Sandu", styles: "C", key: "Eb", difficulty: 2, status: "Repertorio" },
+  { id: "c08", artist: "Miles Davis", title: "So What", styles: "C", key: "Dm", difficulty: 2, status: "Repertorio" },
+  { id: "c09", artist: "Harry Warren", title: "There Will Never Be Another You", styles: "C", key: "Eb", difficulty: 3, status: "Repertorio" },
+  { id: "c10", artist: "Benny Golson", title: "Whisper Not", styles: "C", key: "Cm", difficulty: 3, status: "Repertorio" },
+  { id: "c11", artist: "Johnny Green", title: "Body and Soul", styles: "C", key: "Db", difficulty: 3, status: "Repertorio" },
+  { id: "c12", artist: "Chick Corea", title: "Spain", styles: "C", key: "G", difficulty: 3, status: "To learn" },
+  { id: "c13", artist: "Bart Howard", title: "Fly Me to the Moon", styles: "C", key: "C", difficulty: 2, status: "Repertorio" },
+  { id: "c14", artist: "Billy Strayhorn", title: "Isfahan", styles: "C", key: "Db", difficulty: 3, status: "To learn" },
+  { id: "c15", artist: "Johnny Green", title: "Out of Nowhere", styles: "C", key: "G", difficulty: 3, status: "To learn" },
+  { id: "c16", artist: "Duke Ellington", title: "Satin Doll", styles: "C", key: "C", difficulty: 2, status: "To learn" },
+  { id: "c17", artist: "Sigmund Romberg", title: "Softly as in a Morning Sunrise", styles: "C", key: "Cm", difficulty: 2, status: "To learn" },
+  { id: "c18", artist: "Horace Silver", title: "Song for My Father", styles: "C", key: "Fm", difficulty: 2, status: "To learn" },
+  { id: "c19", artist: "Herbie Hancock", title: "Watermelon Man", styles: "C", key: "Fm", difficulty: 2, status: "To learn" },
+  { id: "c20", artist: "George Gershwin", title: "Summertime", styles: "C", key: "Dm", difficulty: 2, status: "Repertorio" },
+  { id: "c21", artist: "Antonio Carlos Jobim", title: "The Girl From Ipanema", styles: "C", key: "G", difficulty: 2, status: "To learn" },
+  { id: "c22", artist: "Antonio Carlos Jobim", title: "Triste", styles: "C", key: "Bm", difficulty: 3, status: "To learn" },
+  { id: "c23", artist: "Isham Jones", title: "There Is No Greater Love", styles: "C", key: "Por confirmar", difficulty: 3, status: "To learn" },
+  { id: "c24", artist: "Victor Young", title: "Stella by Starlight", styles: "C", key: "Por confirmar", difficulty: 3, status: "To learn" },
+  { id: "c25", artist: "Richard Rodgers", title: "Have You Met Miss Jones", styles: "C", key: "Por confirmar", difficulty: 3, status: "To learn" },
+  { id: "c26", artist: "Sonny Rollins", title: "Doxy", styles: "C", key: "Por confirmar", difficulty: 2, status: "To learn" },
+  { id: "c27", artist: "Sonny Rollins", title: "Tenor Madness", styles: "C", key: "Por confirmar", difficulty: 2, status: "To learn" },
+  { id: "c28", artist: "Thelonious Monk", title: "Blue Monk", styles: "C", key: "Por confirmar", difficulty: 2, status: "To learn" },
+  { id: "c29", artist: "Gerald Marks", title: "All of Me", styles: "C", key: "Bb", difficulty: 2, status: "Repertorio" },
+  { id: "c30", artist: "Bronislaw Kaper", title: "On Green Dolphin Street", styles: "C", key: "Por confirmar", difficulty: 3, status: "To learn" },
+  { id: "c31", artist: "John Klenner", title: "Just Friends", styles: "C", key: "Por confirmar", difficulty: 3, status: "To learn" },
+  { id: "c32", artist: "Joe Henderson", title: "Recorda Me", styles: "C", key: "Por confirmar", difficulty: 3, status: "To learn" },
+  { id: "c33", artist: "Antonio Carlos Jobim", title: "Corcovado", styles: "C", key: "Por confirmar", difficulty: 2, status: "To learn" },
+  { id: "c34", artist: "Antonio Carlos Jobim", title: "Wave", styles: "C", key: "Por confirmar", difficulty: 3, status: "To learn" },
+  { id: "c35", artist: "Antonio Carlos Jobim", title: "Desafinado", styles: "C", key: "Por confirmar", difficulty: 3, status: "To learn" },
+  { id: "c36", artist: "Dizzy Gillespie", title: "A Night in Tunisia", styles: "C", key: "Por confirmar", difficulty: 3, status: "To learn" },
+  { id: "c37", artist: "John Coltrane", title: "Equinox", styles: "C", key: "Cm", difficulty: 2, status: "To learn" }
+].map(expandSong);
+
+const songsById = new Map(repertoire.map((song) => [song.id, song]));
+
+function getSongById(id) {
+  return songsById.get(id);
+}
+
+function getSongGenre(song) {
+  return song.codes.map((code) => LOCALIZED_STYLE_LABELS[currentLang][code]).filter(Boolean).join(" / ");
+}

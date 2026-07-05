@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jesus Sax Repertoire</title>
+    <meta
+      name="description"
+      content="Repertorio de saxo para eventos, cocteles, celebraciones y sesiones con ambiente cuidado."
+    >
+    <meta name="robots" content="follow, index">
+    <link rel="canonical" href="https://delalama.github.io/landing_sax/repertorio/">
+    <link rel="image_src" href="https://delalama.github.io/landing_sax/repertorio/assets/share-preview.jpg?v=20260526">
+    <link rel="icon" type="image/png" href="assets/final_favicon.png">
+    <link rel="apple-touch-icon" href="assets/final_favicon.png">
+    <meta itemprop="image" content="https://delalama.github.io/landing_sax/repertorio/assets/share-preview.jpg?v=20260526">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Jesus Sax Repertoire">
+    <meta
+      property="og:description"
+      content="Repertorio de saxo para eventos, cocteles, celebraciones y sesiones con ambiente cuidado."
+    >
+    <meta property="og:url" content="https://delalama.github.io/landing_sax/repertorio/">
+    <meta property="og:site_name" content="Jesus Sax Repertoire">
+    <meta property="og:image" content="https://delalama.github.io/landing_sax/repertorio/assets/share-preview.jpg?v=20260526">
+    <meta property="og:image:secure_url" content="https://delalama.github.io/landing_sax/repertorio/assets/share-preview.jpg?v=20260526">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Preview de Jesus Sax Repertoire con imagen de saxofon y repertorio para eventos.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jesus Sax Repertoire">
+    <meta
+      name="twitter:description"
+      content="Repertorio de saxo para eventos, cocteles, celebraciones y sesiones con ambiente cuidado."
+    >
+    <meta name="twitter:image" content="https://delalama.github.io/landing_sax/repertorio/assets/share-preview.jpg?v=20260526">
+    <meta name="twitter:image:alt" content="Preview de Jesus Sax Repertoire con imagen de saxofon y repertorio para eventos.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="hero">
+      <img class="hero__image" src="assets/sax-hero.png" alt="">
+      <div class="hero__shade"></div>
+      <nav class="topbar" aria-label="Principal">
+        <a class="brand" href="#inicio" aria-label="Jesus Sax Repertoire">
+          <img class="brand__mark" src="assets/footer%20y%20logo.png" alt="">
+          <span> Repertoire</span>
+        </a>
+        <div class="topbar__actions">
+          <div class="language-switch" aria-label="Idioma">
+            <button type="button" data-lang="en" aria-label="English"><img src="assets/flag-gb.svg" alt=""></button>
+            <button type="button" data-lang="es" aria-label="Espanol"><img src="assets/flag-es.svg" alt=""></button>
+            <button type="button" data-lang="de" aria-label="Deutsch"><img src="assets/flag-de.svg" alt=""></button>
+            <button type="button" data-lang="fr" aria-label="Francais"><img src="assets/flag-fr.svg" alt=""></button>
+          </div>
+          <div class="topbar__links">
+            <a class="topbar__link" href="#repertorio" data-view-link="sets" data-i18n="navSets">Standard repers</a>
+            <a class="topbar__link" href="#repertorio" data-view-link="custom" data-i18n="navCustom">Custom reper</a>
+            <a class="topbar__link" href="#repertorio" data-view-link="repertoire" data-i18n="navRepertoire">Repertorio</a>
+          </div>
+        </div>
+      </nav>
+      <div id="inicio" class="hero__content">
+        <p class="eyebrow" data-i18n="eyebrow">Saxophone live music</p>
+        <h1>Jesus Sax Repertoire</h1>
+        <p class="hero__copy" data-i18n="heroCopy">
+          Un repertorio elegante y versatil para eventos, cocteles, celebraciones
+          y sesiones con ambiente cuidado.
+        </p>
+      </div>
+    </header>
+
+    <main id="repertorio" class="page-shell">
+      <section class="toolbar" aria-label="Filtros del repertorio">
+        <div class="view-switch" aria-label="Vista">
+          <button class="view-switch__button" type="button" data-view="sets" data-i18n="viewSets">Standard repers</button>
+          <button class="view-switch__button" type="button" data-view="custom" data-i18n="viewCustom">Custom reper</button>
+          <button class="view-switch__button" type="button" data-view="repertoire" data-i18n="viewRepertoire">Repertorio completo</button>
+        </div>
+
+        <div id="repertoireTools" class="repertoire-tools">
+          <div class="search">
+            <label for="searchInput" data-i18n="search">Buscar</label>
+            <input id="searchInput" type="search" placeholder="Tema, artista, genero o tonalidad" data-i18n-placeholder="searchPlaceholder">
+          </div>
+
+          <div class="controls">
+            <label for="genreFilter" data-i18n="genre">Genero</label>
+            <select id="genreFilter">
+              <option value="all" data-i18n="all">Todos</option>
+            </select>
+          </div>
+
+          <div class="controls">
+            <label for="statusFilter" data-i18n="status">Estado</label>
+            <select id="statusFilter">
+              <option value="all" data-i18n="allShort">Todo</option>
+              <option value="Repertorio" data-i18n="statusReady">Repertorio</option>
+              <option value="To learn" data-i18n="statusLearn">To learn</option>
+              <option value="Partitura" data-i18n="statusSheet">Partitura</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section id="sets75" class="sets-card" aria-label="Standard repers">
+        <div class="sets-card__head">
+          <div>
+            <p class="eyebrow" data-i18n="setsEyebrow">Repertorios</p>
+            <h2 data-i18n="setsTitle">Standard repers</h2>
+          </div>
+          <p id="setSummary" class="result-count">0 temas</p>
+        </div>
+
+        <div id="setTabs" class="set-tabs" aria-label="Tipos de repertorio"></div>
+        <div id="setVariants" class="set-variants" aria-label="Variantes de repertorio"></div>
+        <div id="setList" class="set-list"></div>
+      </section>
+
+      <section id="customPanel" class="custom-card" aria-label="Custom reper">
+        <div class="custom-card__head">
+          <div>
+            <p class="eyebrow" data-i18n="customEyebrow">Custom</p>
+            <h2 data-i18n="customTitle">Custom reper</h2>
+          </div>
+          <p id="customSummary" class="result-count">0 / 20 temas</p>
+        </div>
+
+        <div class="custom-tools">
+          <div class="search custom-search">
+            <label for="customSearchInput" data-i18n="search">Buscar</label>
+            <input id="customSearchInput" type="search" placeholder="Tema, artista o genero" data-i18n-placeholder="customSearchPlaceholder">
+          </div>
+          <div id="customGenreFilters" class="custom-genre-filters" aria-label="Filtros por genero"></div>
+          <div class="custom-actions" aria-label="Acciones custom reper">
+            <button class="set-variant" type="button" data-custom-pass="1" data-i18n="passOne">Pase 1</button>
+            <button class="set-variant" type="button" data-custom-pass="2" data-i18n="passTwo">Pase 2</button>
+            <button class="custom-clear" type="button" id="downloadCustom" data-i18n="downloadList">Descargar lista</button>
+            <button class="custom-clear" type="button" id="clearCustom" data-i18n="clear">Limpiar</button>
+          </div>
+        </div>
+
+        <div class="custom-builder">
+          <div class="custom-pool" aria-label="Lista completa">
+            <div id="customSongList" class="custom-song-list"></div>
+          </div>
+
+          <div class="custom-passes" aria-label="Pases custom reper">
+            <section class="custom-pass">
+              <div class="set-pass__head">
+                <h3 data-i18n="passOne">Pase 1</h3>
+                <span id="customPassOneCount">0 / 10</span>
+              </div>
+              <ol id="customPassOne" class="set-pass__songs"></ol>
+            </section>
+
+            <section class="custom-pass">
+              <div class="set-pass__head">
+                <h3 data-i18n="passTwo">Pase 2</h3>
+                <span id="customPassTwoCount">0 / 10</span>
+              </div>
+              <ol id="customPassTwo" class="set-pass__songs"></ol>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section id="tablePanel" class="table-card" aria-label="Tabla de repertorio">
+        <div class="table-card__head">
+          <div>
+            <p class="eyebrow" data-i18n="setListEyebrow">Set list</p>
+            <h2 data-i18n="tableTitle">Tabla de repertorio</h2>
+          </div>
+          <p id="resultCount" class="result-count">0 resultados</p>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th aria-sort="none"><button class="sort-button" type="button" data-sort-key="artist" data-i18n="artistName">Nombre artista</button></th>
+                <th aria-sort="none"><button class="sort-button" type="button" data-sort-key="title" data-i18n="songName">Nombre tema</button></th>
+                <th aria-sort="none"><button class="sort-button" type="button" data-sort-key="genre" data-i18n="genre">Genero</button></th>
+                <th aria-sort="none"><button class="sort-button" type="button" data-sort-key="key" data-i18n="key">Tonalidad</button></th>
+                <th aria-sort="none"><button class="sort-button" type="button" data-sort-key="difficulty" data-i18n="group">group</button></th>
+              </tr>
+            </thead>
+            <tbody id="repertoireBody"></tbody>
+          </table>
+        </div>
+
+        <p id="emptyState" class="empty" hidden data-i18n="emptyState">No hay resultados con esos filtros.</p>
+      </section>
+    </main>
+
+    <script src="songs.js"></script>
+    <script src="utilities.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
