@@ -11,7 +11,7 @@ let textos = idiomas[idiomaActivo] || idiomas.es || {};
 const bookingEmail = contenido.emailBooking || "tuemail@example.com";
 
 const bookingEmailElement = document.querySelector("[data-booking-email]");
-const copyEmailButton = document.querySelector(".booking-copy");
+const copyButtons = document.querySelectorAll("[data-copy-value]");
 const siteHeader = document.querySelector(".site-header");
 const backToTop = document.querySelector(".back-to-top");
 const revealElements = document.querySelectorAll("[data-reveal]");
@@ -97,9 +97,9 @@ function actualizarEmailBooking() {
     bookingEmailElement.textContent = bookingEmail;
   }
 
-  if (copyEmailButton) {
-    copyEmailButton.textContent = leerContenido("copiarEmail") || "Copiar email";
-  }
+  copyButtons.forEach((button) => {
+    button.textContent = leerContenido(button.dataset.content) || button.dataset.copyLabel || button.textContent;
+  });
 }
 
 document.querySelectorAll("[data-lang]").forEach((button) => {
@@ -153,14 +153,15 @@ actualizarHeaderEnScroll();
 activarRevelado();
 window.addEventListener("scroll", actualizarHeaderEnScroll, { passive: true });
 
-if (copyEmailButton) {
-  copyEmailButton.addEventListener("click", async () => {
+copyButtons.forEach((button) => {
+  button.addEventListener("click", async () => {
     try {
-      await navigator.clipboard.writeText(bookingEmail);
-      copyEmailButton.textContent = leerContenido("emailCopiado") || "Email copiado";
+      await navigator.clipboard.writeText(button.dataset.copyValue);
+      const successKey = button.dataset.content === "copiarTelefono" ? "telefonoCopiado" : "emailCopiado";
+      button.textContent = leerContenido(successKey) || button.dataset.copySuccess || "Copiado";
       window.setTimeout(actualizarEmailBooking, 1800);
     } catch (error) {
       actualizarEmailBooking();
     }
   });
-}
+});
