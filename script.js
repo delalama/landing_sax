@@ -15,7 +15,7 @@ const copyButtons = document.querySelectorAll("[data-copy-value]");
 const siteHeader = document.querySelector(".site-header");
 const backToTop = document.querySelector(".back-to-top");
 const revealElements = document.querySelectorAll("[data-reveal]");
-const repertoireUrl = "repertorio/index.html";
+const repertoireUrl = "repertorio/";
 const shouldLocalizePage = document.documentElement.hasAttribute("data-localized");
 
 function leerContenido(key) {
