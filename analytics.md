@@ -14,15 +14,15 @@
 - Eventos: https://analytics.google.com/analytics/web/#/reports/engagement-events
 
 Que mirar:
-- En Tiempo real, abre tu web publicada, acepta el banner de cookies y comprueba que aparece una visita.
+- En Tiempo real, abre tu web publicada y comprueba que aparece una visita.
 - En Adquisicion de trafico, revisa si las sesiones vienen de Google, Instagram, enlaces directos u otras webs.
 - En Eventos, busca `page_view` y `lead_click`. `lead_click` se envia al pulsar WhatsApp, email, telefono, Instagram o YouTube.
 
 Prueba rapida:
 - Abre `https://delalama.github.io/landing_sax/?analytics_reset=1&analytics_debug=1`.
-- Acepta el banner de cookies.
 - Mira Tiempo real en Google Analytics.
 - Si usas bloqueador de anuncios, Brave Shields o modo privacidad estricto, desactivalo para esta prueba.
+- En DevTools > Network, filtra por `collect?v=2` o `g/collect` y recarga la pagina.
 
 ## Google Search Console
 

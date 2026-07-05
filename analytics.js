@@ -41,44 +41,6 @@
     }
   }
 
-  function loadGoogleTag() {
-    if (document.querySelector('script[data-jdl-analytics="ga4"]')) {
-      return;
-    }
-
-    var script = document.createElement("script");
-    script.async = true;
-    script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_MEASUREMENT_ID);
-    script.dataset.jdlAnalytics = "ga4";
-    document.head.appendChild(script);
-  }
-
-  function setDefaultConsent() {
-    window.gtag("consent", "default", {
-      ad_personalization: "denied",
-      ad_storage: "denied",
-      ad_user_data: "denied",
-      analytics_storage: "denied",
-      wait_for_update: 500
-    });
-  }
-
-  function grantAnalyticsConsent() {
-    window.gtag("consent", "update", {
-      analytics_storage: "granted"
-    });
-  }
-
-  function configureAnalytics() {
-    grantAnalyticsConsent();
-    window.gtag("js", new Date());
-    window.gtag("config", GA_MEASUREMENT_ID, {
-      anonymize_ip: true,
-      debug_mode: isDebug,
-      send_page_view: true
-    });
-  }
-
   function trackLeadClick(link) {
     if (typeof window.gtag !== "function" || getConsent() !== "granted") {
       return;
@@ -186,7 +148,6 @@
     banner.querySelector(".jdl-consent__accept").addEventListener("click", function () {
       setConsent("granted");
       banner.remove();
-      configureAnalytics();
     });
 
     banner.querySelector(".jdl-consent__reject").addEventListener("click", function () {
@@ -198,7 +159,6 @@
       if (analyticsCheckbox.checked) {
         setConsent("granted");
         banner.remove();
-        configureAnalytics();
         return;
       }
 
@@ -214,17 +174,14 @@
       clearConsent();
     }
 
-    setDefaultConsent();
-    loadGoogleTag();
     addClickTracking();
 
-    var consent = getConsent();
-    if (consent === "granted") {
-      configureAnalytics();
-      return;
+    if (isDebug && typeof window.gtag === "function") {
+      window.gtag("set", "debug_mode", true);
     }
 
-    if (consent !== "denied") {
+    var consent = getConsent();
+    if (consent !== "granted" && consent !== "denied") {
       showConsentBanner();
     }
   }
