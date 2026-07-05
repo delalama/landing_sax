@@ -616,14 +616,15 @@ h2 {
 
 .seo-link-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(18px, 2.4vw, 28px);
+  align-items: stretch;
 }
 
 .seo-link-card {
   display: grid;
-  grid-template-rows: auto auto 1fr;
-  gap: 16px;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  gap: 14px;
   min-width: 0;
   min-height: 0;
   padding: clamp(14px, 1.8vw, 20px);
@@ -639,7 +640,7 @@ h2 {
 .seo-link-card img {
   display: block;
   width: 100%;
-  height: auto;
+  height: clamp(220px, 24vw, 320px);
   aspect-ratio: 16 / 10;
   object-fit: cover;
   object-position: center;
@@ -1259,6 +1260,18 @@ button:hover {
     border-bottom: 0;
   }
 
+  .seo-link-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .seo-link-card img {
+    height: clamp(200px, 34vw, 280px);
+  }
+
+  .seo-link-card strong {
+    font-size: clamp(27px, 5vw, 36px);
+  }
+
 }
 
 @media (max-width: 520px) {
@@ -1336,6 +1349,32 @@ button:hover {
   .feature-media,
   .feature-media img {
     min-height: 360px;
+  }
+
+  .seo-links-section {
+    gap: 28px;
+  }
+
+  .seo-links-section .section-heading h2 {
+    font-size: clamp(34px, 10vw, 44px);
+  }
+
+  .seo-link-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .seo-link-card {
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .seo-link-card img {
+    height: clamp(190px, 56vw, 260px);
+  }
+
+  .seo-link-card strong {
+    font-size: clamp(26px, 8vw, 34px);
+    line-height: 1.04;
   }
 
   .main-actions {
