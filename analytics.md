@@ -7,7 +7,7 @@
 - Sitemap: https://delalama.github.io/landing_sax/sitemap.xml
 
 ## Google Analytics 4
-
+- Tiempo real: https://analytics.google.com/analytics/web/#/a168916243p544281089/realtime/pages?params=_u..nav%3Dmaui
 - Inicio de Analytics: https://analytics.google.com/
 - Tiempo real: https://analytics.google.com/analytics/web/#/realtime
 - Adquisicion de trafico: https://analytics.google.com/analytics/web/#/reports/acquisition-traffic-acquisition
