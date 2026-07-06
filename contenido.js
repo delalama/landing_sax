@@ -32,6 +32,29 @@ window.contenidoLanding = {
         "Improvisación sobre repertorio dado y colaboración con DJs cuando el evento lo pide.",
         "Sonido cuidado, presencia elegante y sensibilidad para acompañar cada ambiente."
       ],
+      mallorcaEyebrow: "Mallorca",
+      mallorcaTitle: "Saxo en directo para cada ambiente.",
+      mallorcaCardLabels: ["Bodas", "Hoteles", "Eventos", "Pool parties", "Alcúdia", "Palma"],
+      mallorcaCardTitles: [
+        "Saxofonista para bodas en Mallorca",
+        "Música en directo para hoteles",
+        "Saxo para eventos privados y marcas",
+        "Saxofonista para pool parties",
+        "Saxofonista en Alcúdia",
+        "Saxofonista en Palma"
+      ],
+      faqEyebrow: "Preguntas frecuentes",
+      faqTitle: "Información útil antes de reservar.",
+      faqQuestions: [
+        "¿En qué zonas de Mallorca actúa JDL SAX?",
+        "¿El repertorio se adapta al tipo de evento?",
+        "¿Qué información conviene enviar para consultar disponibilidad?"
+      ],
+      faqAnswers: [
+        "La disponibilidad se puede consultar para eventos en Mallorca, incluyendo Palma, Alcúdia, Pollença, Can Picafort, Cala Millor y otras zonas de la isla.",
+        "Sí. La propuesta musical puede orientarse a ceremonia, cóctel, cena, ambiente lounge, celebración privada o colaboración con DJ, según el tono del evento.",
+        "Lo ideal es incluir fecha, ubicación, horario aproximado, tipo de evento y una breve idea del ambiente que quieres crear."
+      ],
       sobreMiEtiqueta: "Sobre mí",
       sobreMiTitulo: "Una propuesta musical íntima, refinada y con carácter.",
       sobreMiParrafos: [
@@ -82,6 +105,29 @@ window.contenidoLanding = {
         "A flexible repertoire for dinners, cocktails, ceremonies and brand experiences.",
         "Careful sound, elegant presence and sensitivity for every atmosphere.",
         "Available for live performances, recordings and collaborations with DJs or bands."
+      ],
+      mallorcaEyebrow: "Mallorca",
+      mallorcaTitle: "Live saxophone for every atmosphere.",
+      mallorcaCardLabels: ["Weddings", "Hotels", "Events", "Pool parties", "Alcúdia", "Palma"],
+      mallorcaCardTitles: [
+        "Wedding saxophonist in Mallorca",
+        "Live music for hotels",
+        "Saxophone for private events and brands",
+        "Pool party saxophonist",
+        "Saxophonist in Alcúdia",
+        "Saxophonist in Palma"
+      ],
+      faqEyebrow: "Frequently asked questions",
+      faqTitle: "Useful information before booking.",
+      faqQuestions: [
+        "Which areas of Mallorca does JDL SAX cover?",
+        "Can the repertoire be adapted to the type of event?",
+        "What information should I send to check availability?"
+      ],
+      faqAnswers: [
+        "Availability can be checked for events across Mallorca, including Palma, Alcúdia, Pollença, Can Picafort, Cala Millor and other areas of the island.",
+        "Yes. The musical proposal can be shaped for ceremonies, cocktails, dinners, lounge atmospheres, private celebrations or DJ collaborations, depending on the tone of the event.",
+        "It is best to include the date, location, approximate schedule, type of event and a short idea of the atmosphere you want to create."
       ],
       sobreMiEtiqueta: "About",
       sobreMiTitulo: "An intimate, refined musical proposal with character.",
@@ -135,6 +181,29 @@ window.contenidoLanding = {
         "Improvisation auf vorgegebenem Repertoire.",
         "Sorgfältiger Sound, elegante Präsenz und Feingefühl für jede Stimmung."
       ],
+      mallorcaEyebrow: "Mallorca",
+      mallorcaTitle: "Live-Saxophon für jede Atmosphäre.",
+      mallorcaCardLabels: ["Hochzeiten", "Hotels", "Events", "Pool parties", "Alcúdia", "Palma"],
+      mallorcaCardTitles: [
+        "Saxophonist für Hochzeiten auf Mallorca",
+        "Live-Musik für Hotels",
+        "Saxophon für private Events und Marken",
+        "Saxophonist für Poolpartys",
+        "Saxophonist in Alcúdia",
+        "Saxophonist in Palma"
+      ],
+      faqEyebrow: "Häufige Fragen",
+      faqTitle: "Nützliche Informationen vor der Buchung.",
+      faqQuestions: [
+        "In welchen Regionen Mallorcas spielt JDL SAX?",
+        "Kann das Repertoire an die Art des Events angepasst werden?",
+        "Welche Informationen sollte ich für eine Verfügbarkeitsanfrage senden?"
+      ],
+      faqAnswers: [
+        "Die Verfügbarkeit kann für Events auf Mallorca geprüft werden, darunter Palma, Alcúdia, Pollença, Can Picafort, Cala Millor und weitere Regionen der Insel.",
+        "Ja. Das musikalische Konzept kann je nach Ton des Events auf Zeremonie, Cocktail, Dinner, Lounge-Atmosphäre, private Feier oder DJ-Kollaboration abgestimmt werden.",
+        "Am besten sendest du Datum, Ort, ungefähre Uhrzeit, Art des Events und eine kurze Idee der Atmosphäre, die du schaffen möchtest."
+      ],
       sobreMiEtiqueta: "Über mich",
       sobreMiTitulo: "Ein intimes, raffiniertes Musikkonzept mit Charakter.",
       sobreMiParrafos: [
@@ -185,6 +254,29 @@ window.contenidoLanding = {
         "Répertoire adaptable aux dîners, cocktails, cérémonies et expériences de marque.",
         "Son soigné, présence élégante et sensibilité pour accompagner chaque ambiance.",
         "Disponible pour concerts, enregistrements et collaborations avec DJs ou groupes."
+      ],
+      mallorcaEyebrow: "Majorque",
+      mallorcaTitle: "Saxophone live pour chaque ambiance.",
+      mallorcaCardLabels: ["Mariages", "Hôtels", "Événements", "Pool parties", "Alcúdia", "Palma"],
+      mallorcaCardTitles: [
+        "Saxophoniste pour mariages à Majorque",
+        "Musique live pour hôtels",
+        "Saxophone pour événements privés et marques",
+        "Saxophoniste pour pool parties",
+        "Saxophoniste à Alcúdia",
+        "Saxophoniste à Palma"
+      ],
+      faqEyebrow: "Questions fréquentes",
+      faqTitle: "Informations utiles avant de réserver.",
+      faqQuestions: [
+        "Dans quelles zones de Majorque JDL SAX se produit-il ?",
+        "Le répertoire peut-il s'adapter au type d'événement ?",
+        "Quelles informations envoyer pour consulter la disponibilité ?"
+      ],
+      faqAnswers: [
+        "La disponibilité peut être consultée pour des événements à Majorque, notamment à Palma, Alcúdia, Pollença, Can Picafort, Cala Millor et dans d'autres zones de l'île.",
+        "Oui. La proposition musicale peut être orientée vers une cérémonie, un cocktail, un dîner, une ambiance lounge, une célébration privée ou une collaboration avec DJ, selon le ton de l'événement.",
+        "L'idéal est d'indiquer la date, le lieu, l'horaire approximatif, le type d'événement et une brève idée de l'ambiance souhaitée."
       ],
       sobreMiEtiqueta: "À propos",
       sobreMiTitulo: "Une proposition musicale intime, raffinée et pleine de caractère.",
