@@ -12,14 +12,14 @@ window.contenidoLanding = {
   idiomas: {
     es: {
       etiqueta: "Español",
-      metaDescripcion: "Saxofonista en Mallorca con música en directo y saxo en directo para bodas, hoteles y eventos privados.",
+      metaDescripcion: "Saxofonista en Mallorca con música de saxofón en directo para bodas, hoteles y eventos privados.",
       navSobreMi: "Sobre mí",
       navBooking: "Booking",
       navRepertorio: "Repertorio",
       etiquetaHero: "Saxofonista · Directos · Eventos",
       tituloHero: "Saxofonista en Mallorca para bodas, hoteles y eventos",
       textoHero:
-        "Música en directo con saxo para ceremonias, cócteles, cenas, hoteles, eventos privados y celebraciones en Mallorca con un ambiente cuidado.",
+        "Música de saxofón en directo en Mallorca para ceremonias, cócteles, cenas, hoteles, eventos privados y celebraciones con un ambiente cuidado.",
       youtubeKicker: "Ver canal",
       instagramKicker: "Seguir en",
       featureEtiqueta: "Directo",
