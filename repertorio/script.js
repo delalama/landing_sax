@@ -73,7 +73,8 @@ const TRANSLATIONS = {
   }
 };
 
-let currentLang = "en";
+const savedLandingLang = localStorage.getItem("landingIdioma");
+let currentLang = TRANSLATIONS[savedLandingLang] ? savedLandingLang : "en";
 
 function t(key) {
   return TRANSLATIONS[currentLang][key] || TRANSLATIONS.es[key] || key;
@@ -681,6 +682,7 @@ viewLinks.forEach((link) => {
 languageButtons.forEach((button) => {
   button.addEventListener("click", () => {
     currentLang = button.dataset.lang;
+    localStorage.setItem("landingIdioma", currentLang);
     applyTranslations();
   });
 });
