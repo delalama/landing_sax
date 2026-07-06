@@ -193,16 +193,16 @@ window.contenidoLanding = {
         "Saxophonist in Palma"
       ],
       faqEyebrow: "Häufige Fragen",
-      faqTitle: "Nützliche Informationen vor der Buchung.",
+      faqTitle: "Gut zu wissen vor der Buchung.",
       faqQuestions: [
-        "In welchen Regionen Mallorcas spielt JDL SAX?",
-        "Kann das Repertoire an die Art des Events angepasst werden?",
-        "Welche Informationen sollte ich für eine Verfügbarkeitsanfrage senden?"
+        "Wo auf Mallorca spielt JDL SAX?",
+        "Passt das Repertoire zum Event?",
+        "Was soll ich für eine Anfrage senden?"
       ],
       faqAnswers: [
-        "Die Verfügbarkeit kann für Events auf Mallorca geprüft werden, darunter Palma, Alcúdia, Pollença, Can Picafort, Cala Millor und weitere Regionen der Insel.",
-        "Ja. Das musikalische Konzept kann je nach Ton des Events auf Zeremonie, Cocktail, Dinner, Lounge-Atmosphäre, private Feier oder DJ-Kollaboration abgestimmt werden.",
-        "Am besten sendest du Datum, Ort, ungefähre Uhrzeit, Art des Events und eine kurze Idee der Atmosphäre, die du schaffen möchtest."
+        "Anfragen sind für ganz Mallorca möglich, unter anderem Palma, Alcúdia, Pollença, Can Picafort, Cala Millor und weitere Orte.",
+        "Ja. Musik und Set werden auf Zeremonie, Cocktail, Dinner, Lounge, private Feier oder DJ-Set abgestimmt.",
+        "Am besten Datum, Ort, ungefähre Uhrzeit, Eventart und die gewünschte Stimmung mitschicken."
       ],
       sobreMiEtiqueta: "Über mich",
       sobreMiTitulo: "Ein intimes, raffiniertes Musikkonzept mit Charakter.",

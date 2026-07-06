@@ -864,6 +864,12 @@ h2 {
   font-weight: 600;
   line-height: 1.06;
   letter-spacing: 0;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+html:lang(de) .seo-faq-item h3 {
+  font-size: clamp(26px, 2.5vw, 36px);
 }
 
 .seo-faq-item p {
