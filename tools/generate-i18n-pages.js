@@ -6,20 +6,21 @@ const root = path.resolve(__dirname, "..");
 const siteBase = "https://delalama.github.io/landing_sax";
 const langs = ["es", "en", "de", "fr"];
 const langMeta = {
-  es: { locale: "es_ES", pathPrefix: "" },
-  en: { locale: "en_US", pathPrefix: "en" },
-  de: { locale: "de_DE", pathPrefix: "de" },
-  fr: { locale: "fr_FR", pathPrefix: "fr" }
+  es: { locale: "es_ES", pathPrefix: "", homeLabel: "Inicio" },
+  en: { locale: "en_US", pathPrefix: "en", homeLabel: "Home" },
+  de: { locale: "de_DE", pathPrefix: "de", homeLabel: "Startseite" },
+  fr: { locale: "fr_FR", pathPrefix: "fr", homeLabel: "Accueil" }
 };
 
 const pages = [
-  { slug: "saxofonista-bodas-mallorca", priority: "0.9", image: "assets/img/bodas-1.jpg", imageTitle: "Saxofonista para bodas en Mallorca" },
-  { slug: "saxofonista-hoteles-mallorca", priority: "0.9", image: "assets/img/hoteles-1.jpg", imageTitle: "Saxofonista para hoteles en Mallorca" },
-  { slug: "saxofonista-eventos-mallorca", priority: "0.9", image: "assets/img/eventos-1.jpg", imageTitle: "Saxofonista para eventos en Mallorca" },
-  { slug: "saxofonista-pool-parties-mallorca", priority: "0.88", image: "assets/img/pool-parties-1.jpg", imageTitle: "Saxofonista para pool parties en Mallorca" },
-  { slug: "saxofonista-alcudia", priority: "0.85", image: "assets/img/alcudia-1.jpg", imageTitle: "Saxofonista en Alcudia" },
-  { slug: "saxofonista-palma", priority: "0.85", image: "assets/img/palma-1.jpg", imageTitle: "Saxofonista en Palma" }
+  { slug: "saxofonista-bodas-mallorca", priority: "0.9", image: "assets/img/bodas-1.jpg" },
+  { slug: "saxofonista-hoteles-mallorca", priority: "0.9", image: "assets/img/hoteles-1.jpg" },
+  { slug: "saxofonista-eventos-mallorca", priority: "0.9", image: "assets/img/eventos-1.jpg" },
+  { slug: "saxofonista-pool-parties-mallorca", priority: "0.88", image: "assets/img/pool-parties-1.jpg" },
+  { slug: "saxofonista-alcudia", priority: "0.85", image: "assets/img/alcudia-1.jpg" },
+  { slug: "saxofonista-palma", priority: "0.85", image: "assets/img/palma-1.jpg" }
 ];
+const pageMap = Object.fromEntries(pages.map((page) => [page.slug, page]));
 
 const context = { window: {} };
 vm.createContext(context);
@@ -42,6 +43,59 @@ function replaceMeta(html, selector, content) {
   const key = selector.match(/"([^"]+)"/)[1];
   const re = new RegExp(`(<meta\\s+${attr}="${escapeRegExp(key)}"\\s+content=")[^"]*(">)`);
   return html.replace(re, `$1${content}$2`);
+}
+
+function jsonLdScript(data) {
+  return `    <script type="application/ld+json">\n${JSON.stringify(data, null, 6).replace(/^/gm, "      ")}\n    </script>`;
+}
+
+function schemaForPage(slug, lang, data) {
+  const page = pageMap[slug];
+  const currentUrl = pageUrl(slug, lang);
+  const image = `${siteBase}/${page.image}`;
+  const performerId = `${siteBase}/#jdl-sax`;
+  const serviceId = `${currentUrl}#service`;
+
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "PerformingGroup",
+      "@id": performerId,
+      name: "JDL SAX",
+      alternateName: "Jesús de la Lama",
+      description: "Saxofonista en Mallorca para bodas, hoteles, eventos privados y pool parties con música de saxo en directo.",
+      url: siteBase + "/",
+      image,
+      email: "mailto:elaltas@gmail.com",
+      telephone: "+34 605 545 236",
+      sameAs: [
+        "https://www.youtube.com/@elaltas",
+        "https://www.instagram.com/jesusdelalamasax/"
+      ],
+      areaServed: ["Mallorca", "Palma", "Alcúdia", "Pollença", "Can Picafort", "Cala Millor", "Port d’Alcúdia"],
+      serviceType: "saxofonista para bodas, hoteles, eventos privados y pool parties"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: langMeta[lang].homeLabel, item: siteBase + "/" },
+        { "@type": "ListItem", position: 2, name: data.h1, item: currentUrl }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": serviceId,
+      name: data.h1,
+      description: data.description,
+      serviceType: data.serviceType || "saxofonista para bodas, hoteles, eventos privados y pool parties",
+      url: currentUrl,
+      image,
+      provider: { "@id": performerId },
+      areaServed: ["Mallorca", "Palma", "Alcúdia", "Pollença", "Can Picafort", "Cala Millor", "Port d’Alcúdia"]
+    }
+  ];
 }
 
 function replaceFirstTagText(html, tag, text, className) {
@@ -84,6 +138,39 @@ function replaceListItems(html, items) {
   });
 }
 
+function replaceImageAlts(html, data) {
+  let next = html;
+  next = replaceMeta(next, 'property="og:image:alt"', data.ogImageAlt);
+  next = replaceMeta(next, 'name="twitter:image:alt"', data.ogImageAlt);
+  if (data.heroImageAlt) {
+    next = next.replace(/(<img class="hero-image"[^>]*alt=")[^"]*(")/, `$1${data.heroImageAlt}$2`);
+  }
+  if (Array.isArray(data.galleryAlts)) {
+    let index = 0;
+    next = next.replace(/(<figure class="seo-photo"[\s\S]*?<img[^>]*alt=")[^"]*(")/g, (match, start, end) => {
+      const alt = data.galleryAlts[index++];
+      return alt ? `${start}${alt}${end}` : match;
+    });
+  }
+  return next;
+}
+
+function replaceJsonLd(html, slug, lang, data) {
+  const schema = schemaForPage(slug, lang, data).map(jsonLdScript).join("\n");
+  const withoutSchema = html.replace(/\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/g, "");
+  return withoutSchema.replace(/(\s*<\/head>)/, `\n${schema}$1`);
+}
+
+function replaceRelatedLinks(html, lang) {
+  return html.replace(/<a class="seo-mini-link" href="([^"]+)"><span>[\s\S]*?<\/span><strong>[\s\S]*?<\/strong><\/a>/g, (match, href) => {
+    const slug = (href.match(/(?:\.\.\/)?([^/]+)\/$/) || [])[1];
+    const data = slug && seoPages[slug] && (seoPages[slug][lang] || seoPages[slug].es);
+    if (!data) return match;
+    const label = data.heroEyebrow || data.h1;
+    return `<a class="seo-mini-link" href="${href}"><span>${label}</span><strong>${data.h1}</strong></a>`;
+  });
+}
+
 function alternates(slug) {
   const links = langs
     .map((lang) => `    <link rel="alternate" hreflang="${lang}" href="${pageUrl(slug, lang)}">`)
@@ -109,9 +196,10 @@ function localizeHtml(baseHtml, slug, lang) {
   html = replaceMeta(html, 'property="og:locale"', data.ogLocale || langMeta[lang].locale);
   html = replaceMeta(html, 'property="og:title"', data.ogTitle || data.title);
   html = replaceMeta(html, 'property="og:description"', data.ogDescription || data.description);
-  html = replaceMeta(html, 'property="og:url"', pageUrl(slug, lang, true));
+  html = replaceMeta(html, 'property="og:url"', pageUrl(slug, lang));
   html = replaceMeta(html, 'name="twitter:title"', data.ogTitle || data.title);
   html = replaceMeta(html, 'name="twitter:description"', data.twitterDescription || data.ogDescription || data.description);
+  html = replaceImageAlts(html, data);
 
   const nav = (contenido.idiomas && contenido.idiomas[lang]) || {};
   html = html
@@ -133,12 +221,14 @@ function localizeHtml(baseHtml, slug, lang) {
   html = replaceListItems(html, data.listItems);
   html = replaceSectionHeading(html, "seo-gallery-section", data.galleryEyebrow, data.galleryTitle);
   html = replaceSectionHeading(html, "seo-crosslinks-section", data.relatedEyebrow, data.relatedTitle);
+  html = replaceRelatedLinks(html, lang);
 
   html = html.replace(/(<aside class="seo-side-panel"[\s\S]*?<p class="eyebrow">)[\s\S]*?(<\/p>)/, `$1${data.asideEyebrow}$2`);
   html = html.replace(/(<aside class="seo-side-panel"[\s\S]*?<p class="eyebrow">[\s\S]*?<\/p>\s*<p>)[\s\S]*?(<\/p>)/, `$1${data.asideText}$2`);
   html = html.replace(/(<aside class="seo-side-panel"[\s\S]*?<a class="text-link"[^>]*>)[\s\S]*?(<\/a>)/, `$1${data.asideCta}$2`);
 
   html = applyLanguageUrls(html, slug, lang);
+  html = replaceJsonLd(html, slug, lang, data);
 
   if (lang !== "es") {
     html = html
@@ -181,7 +271,10 @@ for (const page of pages) {
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${[
   sitemapEntry(`${siteBase}/`, "1.0", "assets/share-preview.jpg?v=20260526", "JDL SAX - Saxofonista en Mallorca"),
-  ...pages.flatMap((page) => langs.map((lang) => sitemapEntry(pageUrl(page.slug, lang), page.priority, page.image, page.imageTitle, page.slug))),
+  ...pages.flatMap((page) => langs.map((lang) => {
+    const data = seoPages[page.slug][lang] || seoPages[page.slug].es;
+    return sitemapEntry(pageUrl(page.slug, lang), page.priority, page.image, data.h1, page.slug);
+  })),
   sitemapEntry(`${siteBase}/repertorio/`, "0.7", "repertorio/assets/share-preview.jpg?v=20260526", "Repertorio de saxo para eventos")
 ].join("\n")}\n</urlset>\n`;
 

@@ -137,8 +137,8 @@ function aplicarSeoPageIdioma() {
 
   if (page.title) {
     document.title = page.title;
-    actualizarMeta('meta[property="og:title"]', page.ogTitle || page.title.replace(" | Jesus de la Lama - JDL SAX", " | JDL SAX"));
-    actualizarMeta('meta[name="twitter:title"]', page.ogTitle || page.title.replace(" | Jesus de la Lama - JDL SAX", " | JDL SAX"));
+    actualizarMeta('meta[property="og:title"]', page.ogTitle || page.title.replace(" | Jesús de la Lama - JDL SAX", " | JDL SAX"));
+    actualizarMeta('meta[name="twitter:title"]', page.ogTitle || page.title.replace(" | Jesús de la Lama - JDL SAX", " | JDL SAX"));
   }
 
   actualizarMeta('meta[name="description"]', page.description);
