@@ -100,6 +100,45 @@ select {
   gap: 10px;
 }
 
+.topbar__utility {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.home-link {
+  display: inline-grid;
+  width: 38px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid rgba(255, 248, 236, 0.35);
+  border-radius: 6px;
+  color: #fff8ec;
+  background: rgba(23, 21, 18, 0.18);
+  text-decoration: none;
+}
+
+.home-link:hover,
+.home-link:focus-visible {
+  border-color: #f8d596;
+  background: rgba(248, 213, 150, 0.18);
+}
+
+.home-link:focus-visible {
+  outline: 2px solid #f8d596;
+  outline-offset: 3px;
+}
+
+.home-link svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
 .language-switch {
   display: flex;
   gap: 6px;
@@ -711,6 +750,11 @@ tbody tr:hover {
   }
 
   .language-switch button {
+    width: 34px;
+    height: 27px;
+  }
+
+  .home-link {
     width: 34px;
     height: 27px;
   }
