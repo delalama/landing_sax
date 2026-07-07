@@ -8,6 +8,8 @@
   var params = new URLSearchParams(window.location.search);
   var isDebug = params.has("analytics_debug");
 
+  window.__jdlAnalytics = window.__jdlAnalytics || {};
+
   if (!isConfigured || isLocal) {
     return;
   }
@@ -41,50 +43,66 @@
     }
   }
 
+  function getLeadEventName(link) {
+    var href = link.href || "";
+    var rawHref = link.getAttribute("href") || "";
+    var normalizedHref = href.toLowerCase();
+    var normalizedRawHref = rawHref.toLowerCase();
+
+    if (
+      normalizedHref.indexOf("wa.me") !== -1 ||
+      normalizedHref.indexOf("whatsapp.com") !== -1 ||
+      normalizedHref.indexOf("api.whatsapp.com") !== -1
+    ) {
+      return "whatsapp_click";
+    }
+
+    if (normalizedRawHref.indexOf("mailto:") === 0 || normalizedHref.indexOf("mailto:") === 0) {
+      return "email_click";
+    }
+
+    if (normalizedRawHref.indexOf("tel:") === 0 || normalizedHref.indexOf("tel:") === 0) {
+      return "phone_click";
+    }
+
+    if (normalizedHref.indexOf("instagram.com") !== -1) {
+      return "instagram_click";
+    }
+
+    if (normalizedHref.indexOf("youtube.com") !== -1 || normalizedHref.indexOf("youtu.be") !== -1) {
+      return "youtube_click";
+    }
+
+    return "";
+  }
+
   function trackLeadClick(link) {
-    if (typeof window.gtag !== "function" || getConsent() !== "granted") {
+    var eventName = getLeadEventName(link);
+    if (!eventName || typeof window.gtag !== "function" || getConsent() !== "granted") {
       return;
     }
 
-    var href = link.href || "";
-    var label = "outbound";
-
-    if (href.indexOf("wa.me") !== -1 || href.indexOf("whatsapp") !== -1) {
-      label = "whatsapp";
-    } else if (href.indexOf("mailto:") === 0) {
-      label = "email";
-    } else if (href.indexOf("tel:") === 0) {
-      label = "phone";
-    } else if (href.indexOf("instagram.com") !== -1) {
-      label = "instagram";
-    } else if (href.indexOf("youtube.com") !== -1 || href.indexOf("youtu.be") !== -1) {
-      label = "youtube";
-    }
-
-    window.gtag("event", "lead_click", {
-      event_category: "engagement",
-      event_label: label,
-      link_url: href
+    window.gtag("event", eventName, {
+      event_category: "lead",
+      event_label: link.href || link.getAttribute("href") || "",
+      page_path: window.location.pathname
     });
   }
 
   function addClickTracking() {
+    if (window.__jdlAnalytics.clickTrackingAttached) {
+      return;
+    }
+
+    window.__jdlAnalytics.clickTrackingAttached = true;
+
     document.addEventListener("click", function (event) {
       var link = event.target.closest && event.target.closest("a[href]");
       if (!link) {
         return;
       }
 
-      var href = link.href || "";
-      if (
-        href.indexOf("wa.me") !== -1 ||
-        href.indexOf("whatsapp") !== -1 ||
-        href.indexOf("mailto:") === 0 ||
-        href.indexOf("tel:") === 0 ||
-        href.indexOf("instagram.com") !== -1 ||
-        href.indexOf("youtube.com") !== -1 ||
-        href.indexOf("youtu.be") !== -1
-      ) {
+      if (getLeadEventName(link)) {
         trackLeadClick(link);
       }
     });

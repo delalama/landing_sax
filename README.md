@@ -24,4 +24,4 @@ La web incluye `analytics.js`, un cargador comun para Google Analytics 4. Mientr
 Notas:
 - La medicion empieza desde el momento en que publicas el ID real; no recupera visitas anteriores.
 - El script solo carga Analytics si el visitante acepta el aviso de analitica.
-- Ademas de paginas vistas, se envia el evento `lead_click` cuando alguien pulsa enlaces de WhatsApp, email, telefono, Instagram o YouTube.
+- Ademas de paginas vistas, se envian eventos especificos cuando alguien pulsa enlaces de contacto: `whatsapp_click`, `email_click`, `phone_click`, `instagram_click` y `youtube_click`.

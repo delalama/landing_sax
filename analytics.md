@@ -16,7 +16,7 @@
 Que mirar:
 - En Tiempo real, abre tu web publicada y comprueba que aparece una visita.
 - En Adquisicion de trafico, revisa si las sesiones vienen de Google, Instagram, enlaces directos u otras webs.
-- En Eventos, busca `page_view` y `lead_click`. `lead_click` se envia al pulsar WhatsApp, email, telefono, Instagram o YouTube.
+- En Eventos, busca `page_view`, `whatsapp_click`, `email_click`, `phone_click`, `instagram_click` y `youtube_click`.
 
 Prueba rapida:
 - Abre `https://delalama.github.io/landing_sax/?analytics_reset=1&analytics_debug=1`.
