@@ -53,14 +53,16 @@ function asyncFonts(html) {
 function updateCommonImages(html, file) {
   const hero = rel(file, "assets/hero-personal-1600.webp");
   const logo = rel(file, "assets/footer-logo-440.webp");
-  const smiling = rel(file, "assets/sonriendo-1100.webp");
+  const smiling400 = rel(file, "assets/sonriendo-400.webp");
+  const smiling700 = rel(file, "assets/sonriendo-700.webp");
+  const smiling1100 = rel(file, "assets/sonriendo-1100.webp");
 
   return html
     .replace(/<link rel="preload" as="image" href="[^"]*assets\/hero-personal\.png">/g, `<link rel="preload" as="image" href="${hero}" fetchpriority="high" type="image/webp">`)
     .replace(/(<img class="hero-image") src="[^"]*assets\/hero-personal(?:-1600)?\.(?:png|webp)"(?: width="\d+" height="\d+")?/g, `$1 src="${hero}" width="1536" height="1024"`)
     .replace(/(<img class="brand-wordmark") src="[^"]*assets\/footer%20y%20logo\.png"([^>]*?)>/g, `$1 src="${logo}" width="440" height="166" decoding="async"$2>`)
     .replace(/(<img class="footer-logo") src="[^"]*assets\/footer%20y%20logo\.png"([^>]*?)>/g, `$1 src="${logo}" width="440" height="166" loading="lazy" decoding="async"$2>`)
-    .replace(/<img src="[^"]*assets\/sonriendo(?:-1100)?\.(?:png|webp)" alt="([^"]*)"(?: width="\d+" height="\d+")?[^>]*>/g, `<img src="${smiling}" alt="$1" width="843" height="1264" loading="lazy" decoding="async">`);
+    .replace(/<img src="[^"]*assets\/sonriendo(?:-\d+)?\.(?:png|webp)"(?: srcset="[^"]*")?(?: sizes="[^"]*")? alt="([^"]*)"(?: width="\d+" height="\d+")?[^>]*>/g, `<img src="${smiling700}" srcset="${smiling400} 400w, ${smiling700} 700w, ${smiling1100} 843w" sizes="(max-width: 520px) calc(100vw - 48px), (max-width: 860px) min(100vw - 64px, 560px), 348px" alt="$1" width="700" height="1050" loading="lazy" decoding="async">`);
 }
 
 function updateRepertoireImages(html) {
@@ -80,11 +82,18 @@ function updateGalleryImages(html, file) {
   });
 }
 
+function deferLocalScripts(html) {
+  return html.replace(
+    /<script src="([^"]*(?:analytics|contenido|script|songs|utilities)\.js)"><\/script>/g,
+    '<script src="$1" defer></script>'
+  );
+}
+
 for (const file of htmlFiles) {
   const fullPath = path.join(root, file);
   if (!fs.existsSync(fullPath)) continue;
   const original = fs.readFileSync(fullPath, "utf8");
-  const next = updateRepertoireImages(updateGalleryImages(updateCommonImages(asyncFonts(removeInlineGtag(original)), file), file));
+  const next = deferLocalScripts(updateRepertoireImages(updateGalleryImages(updateCommonImages(asyncFonts(removeInlineGtag(original)), file), file)));
   if (next !== original) {
     fs.writeFileSync(fullPath, next);
     console.log(`updated ${file}`);

@@ -7,6 +7,8 @@ const root = path.resolve(__dirname, "..");
 const jobs = [
   { input: "assets/hero-personal.png", output: "assets/hero-personal-1600.webp", width: 1600, quality: 76 },
   { input: "assets/sonriendo.png", output: "assets/sonriendo-1100.webp", width: 1100, quality: 76 },
+  { input: "assets/sonriendo.png", output: "assets/sonriendo-700.webp", width: 700, quality: 74 },
+  { input: "assets/sonriendo.png", output: "assets/sonriendo-400.webp", width: 400, quality: 72 },
   { input: "assets/footer y logo.png", output: "assets/footer-logo-440.webp", width: 440, quality: 82 },
   { input: "repertorio/assets/sax-hero.png", output: "repertorio/assets/sax-hero-1400.webp", width: 1400, quality: 76 },
   { input: "repertorio/assets/footer y logo.png", output: "repertorio/assets/footer-logo-440.webp", width: 440, quality: 82 },

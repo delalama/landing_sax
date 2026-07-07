@@ -25,3 +25,9 @@ Notas:
 - La medicion empieza desde el momento en que publicas el ID real; no recupera visitas anteriores.
 - El script solo carga Analytics si el visitante acepta el aviso de analitica.
 - Ademas de paginas vistas, se envian eventos especificos cuando alguien pulsa enlaces de contacto: `whatsapp_click`, `email_click`, `phone_click`, `instagram_click` y `youtube_click`.
+
+## Rendimiento en GitHub Pages
+
+GitHub Pages impone sus propias cabeceras HTTP de cache para los archivos servidos desde `github.io`. Lighthouse puede marcar `Cache-Control: max-age=600` como TTL corto en CSS, JS e imagenes, pero ese valor no se puede corregir desde este repositorio con `.htaccess` u otros archivos estaticos.
+
+Para mejorar ese warning hace falta servir la web detras de un CDN o hosting que permita headers personalizados, como Cloudflare, Netlify, Vercel u otra configuracion equivalente. Mientras siga publicada directamente en GitHub Pages, la mejora real compatible es mantener assets ligeros y URLs versionadas cuando cambien.
