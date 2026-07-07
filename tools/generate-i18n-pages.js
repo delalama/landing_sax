@@ -28,9 +28,9 @@ vm.runInContext(fs.readFileSync(path.join(root, "contenido.js"), "utf8"), contex
 const contenido = context.window.contenidoLanding;
 const seoPages = contenido.seoPages || {};
 
-function pageUrl(slug, lang, index = false) {
+function pageUrl(slug, lang) {
   const prefix = langMeta[lang].pathPrefix;
-  return `${siteBase}/${prefix ? `${prefix}/` : ""}${slug}/${index ? "index.html" : ""}`;
+  return `${siteBase}/${prefix ? `${prefix}/` : ""}${slug}/`;
 }
 
 function escapeRegExp(value) {
