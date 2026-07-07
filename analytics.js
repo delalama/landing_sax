@@ -18,6 +18,43 @@
   window.gtag = function () {
     window.dataLayer.push(arguments);
   };
+  window.gtag("consent", "default", {
+    analytics_storage: "denied",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied"
+  });
+
+  function runWhenIdle(callback) {
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(callback, { timeout: 2500 });
+      return;
+    }
+
+    window.setTimeout(callback, 1200);
+  }
+
+  function loadGoogleAnalytics() {
+    if (window.__jdlAnalytics.gtagLoaded || getConsent() !== "granted") {
+      return;
+    }
+
+    window.__jdlAnalytics.gtagLoaded = true;
+    window.gtag("consent", "update", {
+      analytics_storage: "granted"
+    });
+    window.gtag("js", new Date());
+    window.gtag("config", GA_MEASUREMENT_ID, {
+      send_page_view: true
+    });
+
+    runWhenIdle(function () {
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_MEASUREMENT_ID);
+      document.head.appendChild(script);
+    });
+  }
 
   function getConsent() {
     try {
@@ -166,6 +203,7 @@
     banner.querySelector(".jdl-consent__accept").addEventListener("click", function () {
       setConsent("granted");
       banner.remove();
+      loadGoogleAnalytics();
     });
 
     banner.querySelector(".jdl-consent__reject").addEventListener("click", function () {
@@ -177,6 +215,7 @@
       if (analyticsCheckbox.checked) {
         setConsent("granted");
         banner.remove();
+        loadGoogleAnalytics();
         return;
       }
 
@@ -199,6 +238,10 @@
     }
 
     var consent = getConsent();
+    if (consent === "granted") {
+      loadGoogleAnalytics();
+    }
+
     if (consent !== "granted" && consent !== "denied") {
       showConsentBanner();
     }

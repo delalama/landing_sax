@@ -1,0 +1,26 @@
+{
+  "name": "landing_sax",
+  "version": "1.0.0",
+  "description": "Landing estática lista para publicar en GitHub Pages.",
+  "main": "analytics.js",
+  "scripts": {
+    "optimize:images": "node tools/optimize-images.js",
+    "perf:html": "node tools/apply-performance-html.js",
+    "perf": "npm run optimize:images && npm run perf:html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/delalama/landing_sax.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/delalama/landing_sax/issues"
+  },
+  "homepage": "https://github.com/delalama/landing_sax#readme",
+  "devDependencies": {
+    "sharp": "^0.35.3"
+  }
+}
