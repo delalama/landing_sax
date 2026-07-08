@@ -58,12 +58,19 @@ function ensureMeta(html, selector, content) {
 }
 
 function ensureFaviconLinks(html) {
-  const faviconUrl = `${siteBase}/assets/final_favicon.png`;
-  const iconTag = `    <link rel="icon" type="image/png" sizes="240x240" href="${faviconUrl}">`;
-  const appleTag = `    <link rel="apple-touch-icon" sizes="240x240" href="${faviconUrl}">`;
+  const iconTags = [
+    `    <link rel="shortcut icon" href="${siteBase}/favicon.ico">`,
+    `    <link rel="icon" type="image/png" sizes="48x48" href="${siteBase}/favicon-48x48.png">`,
+    `    <link rel="icon" type="image/png" sizes="96x96" href="${siteBase}/favicon-96x96.png">`,
+    `    <link rel="icon" type="image/png" sizes="192x192" href="${siteBase}/favicon-192x192.png">`,
+    `    <link rel="icon" type="image/png" sizes="512x512" href="${siteBase}/favicon-512x512.png">`,
+    `    <link rel="apple-touch-icon" sizes="180x180" href="${siteBase}/apple-touch-icon.png">`,
+    `    <link rel="manifest" href="${siteBase}/manifest.webmanifest">`
+  ].join("\n");
   let next = html.replace(/\s*<link rel="(?:shortcut )?icon"[^>]*>/g, "");
   next = next.replace(/\s*<link rel="apple-touch-icon"[^>]*>/g, "");
-  return next.replace(/(\s*<link rel="preconnect" href="https:\/\/fonts\.googleapis\.com">)/, `\n${iconTag}\n${appleTag}$1`);
+  next = next.replace(/\s*<link rel="manifest"[^>]*>/g, "");
+  return next.replace(/(\s*<link rel="preconnect" href="https:\/\/fonts\.googleapis\.com">)/, `\n${iconTags}$1`);
 }
 
 function jsonLdScript(data) {
