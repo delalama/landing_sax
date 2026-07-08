@@ -4,6 +4,7 @@ const vm = require("vm");
 
 const root = path.resolve(__dirname, "..");
 const siteBase = "https://delalama.github.io/landing_sax";
+const siteIdentity = "Jesús de la Lama | Saxofonista Mallorca";
 const langs = ["es", "en", "de", "fr"];
 const langMeta = {
   es: { locale: "es_ES", pathPrefix: "", homeLabel: "Inicio" },
@@ -45,6 +46,26 @@ function replaceMeta(html, selector, content) {
   return html.replace(re, `$1${content}$2`);
 }
 
+function ensureMeta(html, selector, content) {
+  const attr = selector.startsWith("property=") ? "property" : "name";
+  const key = selector.match(/"([^"]+)"/)[1];
+  const re = new RegExp(`<meta\\s+${attr}="${escapeRegExp(key)}"\\s+content="[^"]*">`);
+  const tag = `    <meta ${attr}="${key}" content="${content}">`;
+  if (re.test(html)) {
+    return replaceMeta(html, selector, content);
+  }
+  return html.replace(/(\s*<meta name="viewport"[^>]*>)/, `$1\n${tag}`);
+}
+
+function ensureFaviconLinks(html) {
+  const faviconUrl = `${siteBase}/assets/final_favicon.png`;
+  const iconTag = `    <link rel="icon" type="image/png" sizes="240x240" href="${faviconUrl}">`;
+  const appleTag = `    <link rel="apple-touch-icon" sizes="240x240" href="${faviconUrl}">`;
+  let next = html.replace(/\s*<link rel="(?:shortcut )?icon"[^>]*>/g, "");
+  next = next.replace(/\s*<link rel="apple-touch-icon"[^>]*>/g, "");
+  return next.replace(/(\s*<link rel="preconnect" href="https:\/\/fonts\.googleapis\.com">)/, `\n${iconTag}\n${appleTag}$1`);
+}
+
 function jsonLdScript(data) {
   return `    <script type="application/ld+json">\n${JSON.stringify(data, null, 6).replace(/^/gm, "      ")}\n    </script>`;
 }
@@ -61,8 +82,8 @@ function schemaForPage(slug, lang, data) {
       "@context": "https://schema.org",
       "@type": "PerformingGroup",
       "@id": performerId,
-      name: "JDL SAX",
-      alternateName: "Jesús de la Lama",
+      name: siteIdentity,
+      alternateName: "JDL SAX",
       description: "Saxofonista en Mallorca para bodas, hoteles, eventos privados y pool parties con música de saxo en directo.",
       url: siteBase + "/",
       image,
@@ -191,12 +212,16 @@ function localizeHtml(baseHtml, slug, lang) {
   let html = baseHtml;
 
   html = html.replace(/<html[^>]*>/, `<html lang="${lang}" data-localized data-seo-page="${slug}">`);
-  html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${data.title}</title>`);
+  html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${siteIdentity}</title>`);
+  html = ensureMeta(html, 'name="application-name"', siteIdentity);
+  html = ensureMeta(html, 'name="apple-mobile-web-app-title"', siteIdentity);
+  html = ensureFaviconLinks(html);
   html = replaceMeta(html, 'name="description"', data.description);
   html = replaceMeta(html, 'property="og:locale"', data.ogLocale || langMeta[lang].locale);
-  html = replaceMeta(html, 'property="og:title"', data.ogTitle || data.title);
+  html = replaceMeta(html, 'property="og:title"', siteIdentity);
   html = replaceMeta(html, 'property="og:description"', data.ogDescription || data.description);
   html = replaceMeta(html, 'property="og:url"', pageUrl(slug, lang));
+  html = replaceMeta(html, 'property="og:site_name"', siteIdentity);
   html = replaceMeta(html, 'name="twitter:title"', data.ogTitle || data.title);
   html = replaceMeta(html, 'name="twitter:description"', data.twitterDescription || data.ogDescription || data.description);
   html = replaceImageAlts(html, data);
