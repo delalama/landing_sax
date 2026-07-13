@@ -68,8 +68,9 @@ const repertoire = [
   { id: "b18", artist: "Maroon 5", title: "This Love", styles: "B", key: "Cm", difficulty: 2, status: "Repertorio" },
   { id: "b19", artist: "Michael Jackson", title: "Billie Jean Lounge", styles: "B", key: "Dm", difficulty: 2, status: "Repertorio" },
   { id: "b20", artist: "Nexeri", title: "Knockin on Heaven´s Door", styles: "B", key: "Bb", difficulty: 1, status: "Repertorio" },
-
   { id: "b21", artist: "Dido", title: "Thank You", styles: "Bb", key: "Por confirmar", difficulty: 2, status: "To learn" },
+  { id: "b22", artist: "Ed Sheeran", title: "Shape of You Bosssa", styles: "B", key: "Gm", difficulty: 1, status: "Repertorio" },
+
 
   { id: "n01", artist: "Traditional", title: "Jingle Bells", styles: "N", key: "Por confirmar", difficulty: 1, status: "Partitura" },
   { id: "n02", artist: "Traditional", title: "Angels We Have Heard On High", styles: "N", key: "Por confirmar", difficulty: 2, status: "Partitura" },
@@ -105,7 +106,7 @@ const repertoire = [
   { id: "ab11", artist: "The Beatles", title: "Yesterday", styles: "AB", key: "F", difficulty: 2, status: "To learn" },
   { id: "ab12", artist: "Elton John", title: "Your Song", styles: "AB", key: "D", difficulty: 2, status: "To learn" },
   { id: "ab13", artist: "Gerry Rafferty", title: "Baker Street", styles: "AB", key: "Dm", difficulty: 3, status: "Repertorio" },
-  { id: "ab14", artist: "Alexandra Stan", title: "Mr. Saxobeat", styles: "A", key: "Por confirmar", difficulty: 2, status: "To learn" },
+  { id: "ab14", artist: "Alexandra Stan", title: "Mr. Saxobeat", styles: "A", key: "Cm", difficulty: 2, status: "To learn" },
   { id: "ab15", artist: "Lost Frequencies", title: "Are You With Me", styles: "AB", key: "Fm", difficulty: 1, status: "Repertorio" },
   { id: "ab16", artist: "Jessy J", title: "Mas Que Nada", styles: "A", key: "Fm", difficulty: 3, status: "Repertorio" },
   { id: "ab17", artist: "Crystal Waters", title: "Gypsy Woman", styles: "A", key: "Dm", difficulty: 2, status: "Repertorio" },
