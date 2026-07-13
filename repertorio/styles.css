@@ -460,11 +460,35 @@ select:focus {
 }
 
 .custom-pass .set-pass__songs li {
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr auto auto;
+}
+
+.custom-order {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  align-self: center;
+  display: flex;
+  gap: 3px;
+}
+
+.custom-order button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--ink);
+  background: #fffdf8;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.custom-order button:disabled {
+  cursor: default;
+  opacity: 0.28;
 }
 
 .custom-remove {
-  grid-column: 3;
+  grid-column: 4;
   grid-row: 1 / span 2;
   align-self: center;
   border: 1px solid var(--line);
@@ -636,6 +660,16 @@ th {
   text-align: left;
   text-transform: inherit;
   cursor: pointer;
+}
+
+.custom-print-button {
+  border-color: var(--green);
+  color: #fffaf1;
+  background: var(--green);
+}
+
+.custom-print-area {
+  display: none;
 }
 
 .sort-button::after {
@@ -816,5 +850,126 @@ tbody tr:hover {
 
   .custom-song-list {
     max-height: 420px;
+  }
+}
+
+@page {
+  size: A4 landscape;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    width: 29.7cm;
+    min-width: 29.7cm;
+    height: 21cm;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+  }
+
+  body > :not(.custom-print-area) {
+    display: none !important;
+  }
+
+  .custom-print-area {
+    display: block;
+  }
+
+  .custom-print-sheet {
+    width: 29.7cm;
+    height: 21cm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    overflow: hidden;
+    break-after: page;
+    page-break-after: always;
+    background: #fff;
+  }
+
+  .custom-print-sheet:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  .custom-print-card {
+    width: 11cm;
+    height: 15.8cm;
+    flex: 0 0 11cm;
+    background: #fff;
+  }
+
+  .custom-print-card__border {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #000;
+    padding: 0.42cm 0.25cm 0.42cm 0;
+    overflow: hidden;
+  }
+
+  .custom-print-card + .custom-print-card .custom-print-card__border {
+    border-left: 0;
+  }
+
+  .custom-print-card__number {
+    margin: 0 0 1.05cm;
+    font: 800 22pt/1 Arial, sans-serif;
+  }
+
+  .custom-print-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font: 20pt/1.22 Georgia, "Times New Roman", serif;
+  }
+
+  .custom-print-list li {
+    display: grid;
+    grid-template-columns: 3ch minmax(0, auto) minmax(0.8em, 1fr) 3.3ch;
+    align-items: baseline;
+    white-space: nowrap;
+  }
+
+  .custom-print-list .number {
+    padding-right: 0.16em;
+    text-align: right;
+    white-space: pre;
+  }
+
+  .custom-print-list .title,
+  .custom-print-list .dots {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .custom-print-list .dots::after {
+    content: "................................................................";
+  }
+
+  .custom-print-list .key-text {
+    padding-left: 0.1em;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  .custom-print-card[data-count="13"] .custom-print-list,
+  .custom-print-card[data-count="14"] .custom-print-list,
+  .custom-print-card[data-count="15"] .custom-print-list,
+  .custom-print-card[data-count="16"] .custom-print-list {
+    font-size: 18pt;
+    line-height: 1.2;
+  }
+
+  .custom-print-card[data-count="17"] .custom-print-list,
+  .custom-print-card[data-count="18"] .custom-print-list,
+  .custom-print-card[data-count="19"] .custom-print-list,
+  .custom-print-card[data-count="20"] .custom-print-list {
+    font-size: 14.5pt;
+    line-height: 1.17;
   }
 }

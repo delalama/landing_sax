@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Setlist Builder · JDL SAX</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="builder">
+      <header class="builder__header">
+        <p class="eyebrow">JDL SAX · herramienta interna</p>
+        <h1>Setlist Builder</h1>
+      </header>
+
+      <section class="upload-panel" aria-labelledby="upload-title">
+        <div>
+          <h2 id="upload-title">1. Capturas</h2>
+          <p>Admite PNG, JPG y capturas del móvil. Puedes generar un único set.</p>
+        </div>
+        <div class="upload-grid">
+          <label class="drop-zone" data-set-index="0" tabindex="0">
+            <span>Set 1</span>
+            <small>Elegir captura o pegar con Ctrl+V</small>
+            <input id="set1File" type="file" accept="image/*">
+            <strong id="set1Name">Ningún archivo</strong>
+          </label>
+          <label class="drop-zone" data-set-index="1" tabindex="0">
+            <span>Set 2</span>
+            <small>Elegir captura o pegar con Ctrl+V (opcional)</small>
+            <input id="set2File" type="file" accept="image/*">
+            <strong id="set2Name">Ningún archivo</strong>
+          </label>
+        </div>
+        <div class="actions">
+          <div class="actions__buttons">
+            <button id="recognizeButton" class="button button--primary" type="button">Leer capturas</button>
+            <button id="pasteButton" class="button" type="button">Pegar portapapeles</button>
+          </div>
+          <span id="status" role="status" aria-live="polite"></span>
+        </div>
+        <details>
+          <summary>Alternativa: pegar el texto manualmente</summary>
+          <div class="text-grid">
+            <label>Set 1<textarea id="set1Text" rows="8" placeholder="1. Shape of My Heart&#10;2. In My Life"></textarea></label>
+            <label>Set 2<textarea id="set2Text" rows="8" placeholder="1. Lose Control&#10;2. Smooth Operator"></textarea></label>
+          </div>
+          <button id="useTextButton" class="button" type="button">Usar este texto</button>
+        </details>
+      </section>
+
+      <section id="reviewPanel" class="review-panel" aria-labelledby="review-title" hidden>
+        <div class="section-heading">
+          <div>
+            <h2 id="review-title">2. Revisar coincidencias</h2>
+            <p>Corrige cualquier título dudoso antes de imprimir. La tonalidad siempre procede del repertorio. Imprime al 100 %, sin márgenes.</p>
+          </div>
+          <button id="printButton" class="button button--primary" type="button">Imprimir tarjetas</button>
+        </div>
+        <div id="warnings" class="warnings" aria-live="polite"></div>
+        <div id="editors" class="editors"></div>
+      </section>
+    </main>
+
+    <section id="printArea" class="print-area" aria-label="Tarjetas listas para imprimir"></section>
+    <datalist id="songTitles"></datalist>
+
+    <script src="../repertorio/songs.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

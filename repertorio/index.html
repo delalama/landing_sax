@@ -50,7 +50,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap"></noscript>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=20260713-3">
     <script src="../analytics.js" defer></script>
   </head>
   <body>
@@ -148,7 +148,7 @@
             <p class="eyebrow" data-i18n="customEyebrow">Custom</p>
             <h2 data-i18n="customTitle">Custom reper</h2>
           </div>
-          <p id="customSummary" class="result-count">0 / 20 temas</p>
+          <p id="customSummary" class="result-count">0 temas</p>
         </div>
 
         <div class="custom-tools">
@@ -160,6 +160,7 @@
           <div class="custom-actions" aria-label="Acciones custom reper">
             <button class="set-variant" type="button" data-custom-pass="1" data-i18n="passOne">Pase 1</button>
             <button class="set-variant" type="button" data-custom-pass="2" data-i18n="passTwo">Pase 2</button>
+            <button class="custom-clear custom-print-button" type="button" id="printCustom" data-i18n="printReper">Print reper</button>
             <button class="custom-clear" type="button" id="downloadCustom" data-i18n="downloadList">Descargar lista</button>
             <button class="custom-clear" type="button" id="clearCustom" data-i18n="clear">Limpiar</button>
           </div>
@@ -174,7 +175,7 @@
             <section class="custom-pass">
               <div class="set-pass__head">
                 <h3 data-i18n="passOne">Pase 1</h3>
-                <span id="customPassOneCount">0 / 10</span>
+                <span id="customPassOneCount">0</span>
               </div>
               <ol id="customPassOne" class="set-pass__songs"></ol>
             </section>
@@ -182,7 +183,7 @@
             <section class="custom-pass">
               <div class="set-pass__head">
                 <h3 data-i18n="passTwo">Pase 2</h3>
-                <span id="customPassTwoCount">0 / 10</span>
+                <span id="customPassTwoCount">0</span>
               </div>
               <ol id="customPassTwo" class="set-pass__songs"></ol>
             </section>
@@ -218,8 +219,10 @@
       </section>
     </main>
 
-    <script src="songs.js" defer></script>
-    <script src="utilities.js" defer></script>
-    <script src="script.js" defer></script>
+    <section id="customPrintArea" class="custom-print-area" aria-label="Tarjetas del repertorio personalizado"></section>
+
+    <script src="songs.js?v=20260713-3" defer></script>
+    <script src="utilities.js?v=20260713-3" defer></script>
+    <script src="script.js?v=20260713-3" defer></script>
   </body>
 </html>

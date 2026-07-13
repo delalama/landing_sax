@@ -7,7 +7,7 @@ const TRANSLATIONS = {
     genre: "Género", all: "Todos", allShort: "Todo", status: "Estado", statusReady: "Repertorio", statusLearn: "Por aprender", statusSheet: "Partitura",
     songs: "Temas", group: "group",
     setsEyebrow: "Repertorios", setsTitle: "Standard repers", customEyebrow: "Custom", customTitle: "Custom reper",
-    passOne: "Pase 1", passTwo: "Pase 2", pass: "Pase", passPlural: "pases", downloadList: "Descargar lista", clear: "Limpiar",
+    passOne: "Pase 1", passTwo: "Pase 2", pass: "Pase", passPlural: "pases", printReper: "Imprimir reper", downloadList: "Descargar lista", clear: "Limpiar",
     setListEyebrow: "Set list", tableTitle: "Tabla de repertorio", artistName: "Nombre artista", songName: "Nombre tema", key: "Tonalidad",
     emptyState: "No hay resultados con esos filtros.", results: "resultados", result: "resultado", add: "Añadir", remove: "Quitar",
     noSongsSelected: "Sin canciones seleccionadas.", selectedSongs: "temas",
@@ -25,7 +25,7 @@ const TRANSLATIONS = {
     genre: "Genre", all: "All", allShort: "All", status: "Status", statusReady: "Repertoire", statusLearn: "To learn", statusSheet: "Sheet music",
     songs: "Songs", group: "group",
     setsEyebrow: "Repertoires", setsTitle: "Standard repers", customEyebrow: "Custom", customTitle: "Custom reper",
-    passOne: "Set 1", passTwo: "Set 2", pass: "Set", passPlural: "sets", downloadList: "Download list", clear: "Clear",
+    passOne: "Set 1", passTwo: "Set 2", pass: "Set", passPlural: "sets", printReper: "Print reper", downloadList: "Download list", clear: "Clear",
     setListEyebrow: "Set list", tableTitle: "Repertoire table", artistName: "Artist name", songName: "Song title", key: "Key",
     emptyState: "No results with those filters.", results: "results", result: "result", add: "Add", remove: "Remove",
     noSongsSelected: "No songs selected.", selectedSongs: "songs",
@@ -43,7 +43,7 @@ const TRANSLATIONS = {
     genre: "Genre", all: "Alle", allShort: "Alle", status: "Status", statusReady: "Repertoire", statusLearn: "Zu lernen", statusSheet: "Partitur",
     songs: "Titel", group: "group",
     setsEyebrow: "Repertoires", setsTitle: "Standard Repers", customEyebrow: "Custom", customTitle: "Custom Reper",
-    passOne: "Set 1", passTwo: "Set 2", pass: "Set", passPlural: "Sets", downloadList: "Liste herunterladen", clear: "Löschen",
+    passOne: "Set 1", passTwo: "Set 2", pass: "Set", passPlural: "Sets", printReper: "Reper drucken", downloadList: "Liste herunterladen", clear: "Löschen",
     setListEyebrow: "Setlist", tableTitle: "Repertoire-Tabelle", artistName: "Künstler", songName: "Titel", key: "Tonart",
     emptyState: "Keine Ergebnisse mit diesen Filtern.", results: "Ergebnisse", result: "Ergebnis", add: "Hinzufügen", remove: "Entfernen",
     noSongsSelected: "Keine Titel ausgewählt.", selectedSongs: "Titel",
@@ -61,7 +61,7 @@ const TRANSLATIONS = {
     genre: "Genre", all: "Tous", allShort: "Tout", status: "Statut", statusReady: "Répertoire", statusLearn: "À apprendre", statusSheet: "Partition",
     songs: "Titres", group: "group",
     setsEyebrow: "Répertoires", setsTitle: "Standard repers", customEyebrow: "Custom", customTitle: "Custom reper",
-    passOne: "Set 1", passTwo: "Set 2", pass: "Set", passPlural: "sets", downloadList: "Télécharger la liste", clear: "Effacer",
+    passOne: "Set 1", passTwo: "Set 2", pass: "Set", passPlural: "sets", printReper: "Imprimer le reper", downloadList: "Télécharger la liste", clear: "Effacer",
     setListEyebrow: "Set list", tableTitle: "Table du répertoire", artistName: "Nom artiste", songName: "Titre", key: "Tonalité",
     emptyState: "Aucun résultat avec ces filtres.", results: "résultats", result: "résultat", add: "Ajouter", remove: "Retirer",
     noSongsSelected: "Aucun titre sélectionné.", selectedSongs: "titres",
@@ -223,6 +223,8 @@ const customPassOneCount = document.querySelector("#customPassOneCount");
 const customPassTwoCount = document.querySelector("#customPassTwoCount");
 const clearCustom = document.querySelector("#clearCustom");
 const downloadCustom = document.querySelector("#downloadCustom");
+const printCustom = document.querySelector("#printCustom");
+const customPrintArea = document.querySelector("#customPrintArea");
 const customPassButtons = document.querySelectorAll("[data-custom-pass]");
 const setTabs = document.querySelector("#setTabs");
 const setVariants = document.querySelector("#setVariants");
@@ -239,7 +241,6 @@ let activeSort = {
   key: null,
   direction: "asc"
 };
-const CUSTOM_PASS_LIMIT = 10;
 const customSelection = {
   1: [],
   2: []
@@ -478,9 +479,6 @@ function renderCustomSongList() {
 
   customSongList.innerHTML = visibleSongs.map((song) => {
     const selectedPass = getCustomPassForSong(song.id);
-    const nextPass = getNextAvailableCustomPass();
-    const passIsFull = !nextPass;
-    const isUnavailable = !selectedPass && passIsFull;
     const buttonText = selectedPass ? `${t("pass")} ${selectedPass}` : t("add");
 
     return `
@@ -488,7 +486,6 @@ function renderCustomSongList() {
         class="custom-song ${selectedPass ? "custom-song--selected" : ""}"
         type="button"
         data-song-id="${song.id}"
-        ${isUnavailable ? "disabled" : ""}
       >
         <span class="song__title">${song.title}</span>
         <span class="muted">${song.artist}</span>
@@ -501,14 +498,18 @@ function renderCustomSongList() {
 function renderCustomPass(passNumber, container, countElement) {
   const ids = customSelection[passNumber];
 
-  countElement.textContent = `${ids.length} / ${CUSTOM_PASS_LIMIT}`;
-  container.innerHTML = ids.map((id) => {
+  countElement.textContent = String(ids.length);
+  container.innerHTML = ids.map((id, index) => {
     const song = getSongById(id);
     if (!song) return "";
     return `
       <li>
         <span class="song__title">${song.title}</span>
         <span class="muted">${song.artist}</span>
+        <span class="custom-order" aria-label="Cambiar orden">
+          <button type="button" data-move-id="${id}" data-direction="-1" aria-label="Subir ${song.title}" ${index === 0 ? "disabled" : ""}>↑</button>
+          <button type="button" data-move-id="${id}" data-direction="1" aria-label="Bajar ${song.title}" ${index === ids.length - 1 ? "disabled" : ""}>↓</button>
+        </span>
         <button class="custom-remove" type="button" data-remove-id="${id}" aria-label="${t("remove")} ${song.title}">
           ${t("remove")}
         </button>
@@ -520,20 +521,11 @@ function renderCustomPass(passNumber, container, countElement) {
 function renderCustomBuilder() {
   const totalSelected = customSelection[1].length + customSelection[2].length;
 
-  customSummary.textContent = `${totalSelected} / ${CUSTOM_PASS_LIMIT * 2} ${t("selectedSongs")}`;
+  customSummary.textContent = `${totalSelected} ${t("selectedSongs")}`;
   renderCustomPassButtons();
   renderCustomSongList();
   renderCustomPass(1, customPassOne, customPassOneCount);
   renderCustomPass(2, customPassTwo, customPassTwoCount);
-}
-
-function getNextAvailableCustomPass() {
-  if (customSelection[activeCustomPass].length < CUSTOM_PASS_LIMIT) return activeCustomPass;
-
-  const otherPass = activeCustomPass === 1 ? 2 : 1;
-  if (customSelection[otherPass].length < CUSTOM_PASS_LIMIT) return otherPass;
-
-  return null;
 }
 
 function toggleCustomSong(id) {
@@ -545,11 +537,17 @@ function toggleCustomSong(id) {
     return;
   }
 
-  const targetPass = getNextAvailableCustomPass();
-  if (!targetPass) return;
+  customSelection[activeCustomPass].push(id);
+  renderCustomBuilder();
+}
 
-  customSelection[targetPass].push(id);
-  activeCustomPass = targetPass;
+function moveCustomSong(passNumber, id, direction) {
+  const songs = customSelection[passNumber];
+  const currentIndex = songs.indexOf(id);
+  const targetIndex = currentIndex + direction;
+  if (currentIndex < 0 || targetIndex < 0 || targetIndex >= songs.length) return;
+  const [songId] = songs.splice(currentIndex, 1);
+  songs.splice(targetIndex, 0, songId);
   renderCustomBuilder();
 }
 
@@ -592,6 +590,81 @@ function downloadCustomList() {
   URL.revokeObjectURL(url);
 }
 
+const CUSTOM_PRINT_CHUNK_SIZE = 20;
+
+function splitIntoPrintCards(ids) {
+  const chunks = [];
+  for (let index = 0; index < ids.length; index += CUSTOM_PRINT_CHUNK_SIZE) {
+    chunks.push(ids.slice(index, index + CUSTOM_PRINT_CHUNK_SIZE));
+  }
+  return chunks;
+}
+
+function createCustomPrintCard(passNumber, ids, offset) {
+  const card = document.createElement("article");
+  card.className = "custom-print-card";
+  card.dataset.count = String(ids.length);
+
+  const border = document.createElement("div");
+  border.className = "custom-print-card__border";
+  const heading = document.createElement("h2");
+  heading.className = "custom-print-card__number";
+  heading.textContent = String(passNumber);
+  const list = document.createElement("ol");
+  list.className = "custom-print-list";
+
+  ids.forEach((id, index) => {
+    const song = getSongById(id);
+    if (!song) return;
+    const line = document.createElement("li");
+    const number = document.createElement("span");
+    const title = document.createElement("span");
+    const dots = document.createElement("span");
+    const key = document.createElement("span");
+    number.className = "number";
+    number.textContent = `${String(offset + index + 1).padStart(2, " ")}.`;
+    title.className = "title";
+    title.textContent = song.title;
+    dots.className = "dots";
+    key.className = "key-text";
+    key.textContent = song.key === "Por confirmar" ? "—" : song.key;
+    line.append(number, title, dots, key);
+    list.append(line);
+  });
+
+  border.append(heading, list);
+  card.append(border);
+  return card;
+}
+
+function renderCustomPrintCards() {
+  customPrintArea.replaceChildren();
+  const chunks = {
+    1: splitIntoPrintCards(customSelection[1]),
+    2: splitIntoPrintCards(customSelection[2])
+  };
+  const pageCount = Math.max(chunks[1].length, chunks[2].length);
+
+  for (let pageIndex = 0; pageIndex < pageCount; pageIndex += 1) {
+    const sheet = document.createElement("div");
+    sheet.className = "custom-print-sheet";
+    [1, 2].forEach((passNumber) => {
+      const ids = chunks[passNumber][pageIndex];
+      if (ids) sheet.append(createCustomPrintCard(passNumber, ids, pageIndex * CUSTOM_PRINT_CHUNK_SIZE));
+    });
+    customPrintArea.append(sheet);
+  }
+}
+
+function printCustomReper() {
+  if (!customSelection[1].length && !customSelection[2].length) {
+    window.alert(t("noSongsSelected"));
+    return;
+  }
+  renderCustomPrintCards();
+  window.print();
+}
+
 [searchInput, genreFilter, statusFilter].forEach((control) => {
   control.addEventListener("input", renderRows);
 });
@@ -625,6 +698,12 @@ customSongList.addEventListener("click", (event) => {
 
 [customPassOne, customPassTwo].forEach((passList) => {
   passList.addEventListener("click", (event) => {
+    const moveButton = event.target.closest("[data-move-id]");
+    if (moveButton) {
+      const passNumber = passList === customPassOne ? 1 : 2;
+      moveCustomSong(passNumber, moveButton.dataset.moveId, Number(moveButton.dataset.direction));
+      return;
+    }
     const removeButton = event.target.closest("[data-remove-id]");
     if (!removeButton) return;
     toggleCustomSong(removeButton.dataset.removeId);
@@ -646,6 +725,7 @@ clearCustom.addEventListener("click", () => {
 });
 
 downloadCustom.addEventListener("click", downloadCustomList);
+printCustom.addEventListener("click", printCustomReper);
 
 setTabs.addEventListener("click", (event) => {
   const tab = event.target.closest(".set-tab");
