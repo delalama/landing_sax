@@ -591,6 +591,11 @@ function downloadCustomList() {
 }
 
 const CUSTOM_PRINT_CHUNK_SIZE = 20;
+const CUSTOM_PRINT_MAX_FONT_SIZE = 26;
+const CUSTOM_PRINT_MIN_FONT_SIZE = 8;
+const CUSTOM_PRINT_FONT_STEP = 0.25;
+const CUSTOM_PRINT_BASE_LINE_HEIGHT = 1.22;
+const CUSTOM_PRINT_MAX_LINE_HEIGHT = 1.45;
 
 function splitIntoPrintCards(ids) {
   const chunks = [];
@@ -609,6 +614,7 @@ function createCustomPrintCard(passNumber, ids, offset) {
   border.className = "custom-print-card__border";
   const heading = document.createElement("h2");
   heading.className = "custom-print-card__number";
+  heading.style.margin = "0";
   heading.textContent = String(passNumber);
   const list = document.createElement("ol");
   list.className = "custom-print-list";
@@ -635,6 +641,64 @@ function createCustomPrintCard(passNumber, ids, offset) {
   border.append(heading, list);
   card.append(border);
   return card;
+}
+
+function getPrintListAvailableHeight(card) {
+  const border = card.querySelector(".custom-print-card__border");
+  const heading = card.querySelector(".custom-print-card__number");
+  const borderStyle = getComputedStyle(border);
+  const headingStyle = getComputedStyle(heading);
+  const verticalPadding = Number.parseFloat(borderStyle.paddingTop) + Number.parseFloat(borderStyle.paddingBottom);
+  const headingSpace = heading.offsetHeight + Number.parseFloat(headingStyle.marginBottom);
+
+  return border.clientHeight - verticalPadding - headingSpace;
+}
+
+function printCardFits(card, availableHeight) {
+  const list = card.querySelector(".custom-print-list");
+  const lines = list.querySelectorAll("li");
+  const fitsHorizontally = [...lines].every((line) => {
+    const lineRight = line.getBoundingClientRect().right;
+    const keyRight = line.lastElementChild.getBoundingClientRect().right;
+    return keyRight <= lineRight + 1;
+  });
+  const fitsVertically = list.scrollHeight <= availableHeight + 1;
+
+  return fitsHorizontally && fitsVertically;
+}
+
+function fitCustomPrintCard(card) {
+  const list = card.querySelector(".custom-print-list");
+  const songCount = list.children.length;
+  if (!songCount || !card.offsetWidth) return;
+
+  const availableHeight = getPrintListAvailableHeight(card);
+  let fontSize = CUSTOM_PRINT_MAX_FONT_SIZE;
+
+  list.style.setProperty("--print-font-size", `${fontSize}pt`);
+  list.style.setProperty("--print-line-height", CUSTOM_PRINT_BASE_LINE_HEIGHT);
+
+  while (fontSize > CUSTOM_PRINT_MIN_FONT_SIZE && !printCardFits(card, availableHeight)) {
+    fontSize -= CUSTOM_PRINT_FONT_STEP;
+    list.style.setProperty("--print-font-size", `${fontSize}pt`);
+  }
+
+  const fontSizePixels = Number.parseFloat(getComputedStyle(list).fontSize);
+  const spaciousLineHeight = Math.min(
+    CUSTOM_PRINT_MAX_LINE_HEIGHT,
+    availableHeight / (songCount * fontSizePixels)
+  );
+  let lineHeight = Math.max(CUSTOM_PRINT_BASE_LINE_HEIGHT, spaciousLineHeight);
+
+  list.style.setProperty("--print-line-height", lineHeight.toFixed(3));
+  while (lineHeight > CUSTOM_PRINT_BASE_LINE_HEIGHT && !printCardFits(card, availableHeight)) {
+    lineHeight -= 0.01;
+    list.style.setProperty("--print-line-height", lineHeight.toFixed(3));
+  }
+}
+
+function fitCustomPrintCards() {
+  customPrintArea.querySelectorAll(".custom-print-card").forEach(fitCustomPrintCard);
 }
 
 function renderCustomPrintCards() {
@@ -664,6 +728,8 @@ function printCustomReper() {
   renderCustomPrintCards();
   window.print();
 }
+
+window.addEventListener("beforeprint", fitCustomPrintCards);
 
 [searchInput, genreFilter, statusFilter].forEach((control) => {
   control.addEventListener("input", renderRows);

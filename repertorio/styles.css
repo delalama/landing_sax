@@ -908,7 +908,7 @@ tbody tr:hover {
     display: flex;
     flex-direction: column;
     border: 2px solid #000;
-    padding: 0.42cm 0.25cm 0.42cm 0;
+    padding: 0.42cm 0.42cm 0.42cm 0;
     overflow: hidden;
   }
 
@@ -917,7 +917,7 @@ tbody tr:hover {
   }
 
   .custom-print-card__number {
-    margin: 0 0 1.05cm;
+    margin: 0;
     font: 800 22pt/1 Arial, sans-serif;
   }
 
@@ -925,13 +925,16 @@ tbody tr:hover {
     margin: 0;
     padding: 0;
     list-style: none;
-    font: 20pt/1.22 Georgia, "Times New Roman", serif;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: var(--print-font-size, 20pt);
+    line-height: var(--print-line-height, 1.22);
   }
 
   .custom-print-list li {
     display: grid;
-    grid-template-columns: 3ch minmax(0, auto) minmax(0.8em, 1fr) 3.3ch;
+    grid-template-columns: 3ch minmax(0, auto) minmax(0.9em, 1fr) 3.3ch;
     align-items: baseline;
+    width: 100%;
     white-space: nowrap;
   }
 
@@ -941,14 +944,16 @@ tbody tr:hover {
     white-space: pre;
   }
 
-  .custom-print-list .title,
   .custom-print-list .dots {
     min-width: 0;
-    overflow: hidden;
+    height: 0.72em;
+    margin: 0 0.12em;
+    border-bottom: 0.08em dotted currentColor;
   }
 
-  .custom-print-list .dots::after {
-    content: "................................................................";
+  .custom-print-list .title {
+    min-width: 0;
+    overflow: hidden;
   }
 
   .custom-print-list .key-text {
@@ -957,19 +962,4 @@ tbody tr:hover {
     text-align: left;
   }
 
-  .custom-print-card[data-count="13"] .custom-print-list,
-  .custom-print-card[data-count="14"] .custom-print-list,
-  .custom-print-card[data-count="15"] .custom-print-list,
-  .custom-print-card[data-count="16"] .custom-print-list {
-    font-size: 18pt;
-    line-height: 1.2;
-  }
-
-  .custom-print-card[data-count="17"] .custom-print-list,
-  .custom-print-card[data-count="18"] .custom-print-list,
-  .custom-print-card[data-count="19"] .custom-print-list,
-  .custom-print-card[data-count="20"] .custom-print-list {
-    font-size: 14.5pt;
-    line-height: 1.17;
-  }
 }
