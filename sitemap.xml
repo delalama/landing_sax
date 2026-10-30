@@ -380,4 +380,10 @@
       <image:title>Repertorio de saxo para eventos</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://delalama.github.io/landing_sax/press-kit/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

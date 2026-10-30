@@ -16,6 +16,7 @@ window.contenidoLanding = {
       navSobreMi: "Sobre mí",
       navBooking: "Booking",
       navRepertorio: "Repertorio",
+      navPressKit: "Press kit",
       etiquetaHero: "Saxofonista · Directos · Eventos",
       tituloHero: "Saxofonista en Mallorca para bodas, hoteles y eventos",
       textoHero:
@@ -90,6 +91,7 @@ window.contenidoLanding = {
       navSobreMi: "About",
       navBooking: "Booking",
       navRepertorio: "Repertoire",
+      navPressKit: "Press kit",
       etiquetaHero: "Saxophonist · Live Sets · Events",
       tituloHero: "Live saxophonist in Mallorca for memorable events.",
       textoHero:
@@ -165,6 +167,7 @@ window.contenidoLanding = {
       navSobreMi: "Über mich",
       navBooking: "Booking",
       navRepertorio: "Repertoire",
+      navPressKit: "Pressekit",
       etiquetaHero: "Saxophonist · Live · Events",
       tituloHero: "Jazz, Pop und Tanzmusik",
       textoHero:
@@ -239,6 +242,7 @@ window.contenidoLanding = {
       navSobreMi: "À propos",
       navBooking: "Booking",
       navRepertorio: "Repertoire",
+      navPressKit: "Dossier de presse",
       etiquetaHero: "Saxophoniste · Live · Événements",
       tituloHero: "Une élégance sonore pour des moments mémorables.",
       textoHero:

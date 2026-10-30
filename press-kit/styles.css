@@ -1,0 +1,119 @@
+.press-kit-page {
+  min-height: 100vh;
+}
+
+.press-kit-page .site-header {
+  position: fixed;
+}
+
+.press-kit-page .nav-links {
+  gap: clamp(10px, 1.5vw, 22px);
+}
+
+.press-kit-page .nav-links a[aria-current="page"] {
+  color: var(--ink);
+  border-color: rgba(200, 164, 107, 0.65);
+}
+
+.press-kit-page .press-kit-main {
+  display: block;
+  min-height: 100vh;
+  padding: 148px clamp(12px, 2vw, 22px) 18px;
+}
+
+.press-kit-panel {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid rgba(198, 164, 118, 0.24);
+  border-radius: clamp(20px, 3vw, 36px);
+  background: linear-gradient(160deg, #0f1318, #090c10);
+  box-shadow: var(--shadow);
+}
+
+.press-kit-toolbar {
+  display: flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px clamp(16px, 3vw, 28px);
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.press-kit-toolbar a {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  border: 1px solid rgba(198, 164, 118, 0.46);
+  color: var(--paper);
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.press-kit-toolbar a span {
+  color: var(--gold);
+}
+
+.press-kit-toolbar a:hover {
+  background: var(--gold);
+  color: #15130f;
+}
+
+.press-kit-toolbar a:hover span {
+  color: #15130f;
+}
+
+.press-kit-frame {
+  height: calc(100vh - 242px);
+  min-height: 360px;
+  overflow: hidden;
+  background: #11151a;
+}
+
+.press-kit-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (max-width: 860px) {
+  .press-kit-page .nav-links {
+    gap: clamp(8px, 2vw, 16px);
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 520px) {
+  .press-kit-page .nav-links {
+    gap: clamp(8px, 3vw, 14px);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+  }
+
+  .press-kit-page .press-kit-main {
+    padding-top: 168px;
+  }
+
+  .press-kit-toolbar {
+    min-height: 52px;
+  }
+
+  .press-kit-toolbar a {
+    min-height: 32px;
+    padding: 0 10px;
+    font-size: 9px;
+  }
+
+  .press-kit-frame {
+    height: calc(100vh - 242px);
+    min-height: 360px;
+  }
+}
